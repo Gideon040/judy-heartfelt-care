@@ -4,8 +4,12 @@ import { notFound } from "next/navigation";
 import { site } from "@/site.config";
 import { dienstSchema } from "@/lib/schema";
 import { inhoud } from "../inhoud";
-import { Band, BelKnop, CtaBlok, FaqSectie, HeroSub, JsonLd, K, PlaatsPills, Stappen, Tags, ZorgvraagKnop } from "@/components/Blokken";
-import { Pijl, Vink } from "@/components/Iconen";
+import { vormgeving } from "../vormgeving";
+import { Band, BelKnop, CtaBlok, FaqSectie, HeroSub, JsonLd, K, Mini, Panelen, PlaatsPills, SectieKop, Stappen, Tags, ZorgvraagKnop } from "@/components/Blokken";
+import Accent from "@/components/Accent";
+import Golf from "@/components/Golf";
+import { FOTO } from "@/components/fotos";
+import { Pijl } from "@/components/Iconen";
 import { Tijdlijn, WaakEnSlaap } from "@/components/Nachtzorg";
 
 type Props = { params: Promise<{ dienst: string }> };
@@ -36,6 +40,7 @@ export default async function DienstPagina({ params }: Props) {
   const gevonden = zoek((await params).dienst);
   if (!gevonden) notFound();
   const { dienst, t } = gevonden;
+  const v = vormgeving[dienst.slug];
   const isNacht = dienst.slug === "nachtzorg";
   const pad = `/zorg/${dienst.slug}`;
 
@@ -54,14 +59,14 @@ export default async function DienstPagina({ params }: Props) {
       />
 
       {/* [3] Wat is het */}
-      <section className="sec">
-        <div className="wrap col" style={{ gap: 40 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(440px,100%),1fr))", gap: "32px 64px", alignItems: "end" }}>
-            <div className="col rv" style={{ gap: 16 }}>
+      <section className={t.band ? "sec" : "sec met-golf"}>
+        <div className="wrap">
+          <div className="split rv" style={{ alignItems: "end" }}>
+            <div className="kopblok">
               <div className="eb">Wat is {dienst.naam.toLowerCase()}</div>
               <h2 className="h2"><K k={t.watKop} /></h2>
             </div>
-            <p className="lead rv">{t.watTekst}</p>
+            <p className="big">{t.watTekst}</p>
           </div>
           {isNacht ? (
             <>
@@ -69,35 +74,30 @@ export default async function DienstPagina({ params }: Props) {
               <WaakEnSlaap />
             </>
           ) : (
-            <div className="g4">
-              {t.taken.map((taak) => (
-                <div key={taak.titel} className="card col rv lift kaart-pad">
-                  <div className="li"><Vink /><h3 className="h3">{taak.titel}</h3></div>
-                  <p className="sm">{taak.tekst}</p>
-                </div>
+            <div className="raster r4" style={{ marginTop: 44 }}>
+              {t.taken.map((taak, i) => (
+                <Mini key={taak.titel} ill={v.taken[i]} titel={taak.titel}><p>{taak.tekst}</p></Mini>
               ))}
             </div>
           )}
         </div>
+        {!t.band && <Golf kleur="peach" />}
       </section>
 
-      {t.band && <Band src={t.band.afbeelding} alt={t.band.alt} eb={t.band.eb} titel={<K k={t.band.kop} />} lead={t.band.lead} />}
+      {t.band && (
+        <div className="met-golf" style={{ position: "relative", paddingBottom: "var(--golf)" }}>
+          <Band src={t.band.afbeelding} alt={t.band.alt} eb={t.band.eb} titel={<K k={t.band.kop} />} lead={t.band.lead} />
+          <Golf kleur="peach" />
+        </div>
+      )}
 
-      {/* [4] Voor wie */}
-      <section className="sec" style={{ background: "#FFF5EC" }}>
-        <div className="wrap col" style={{ gap: 44 }}>
-          <div className="col rv" style={{ gap: 16, maxWidth: 760 }}>
-            <div className="eb">Voor wie</div>
-            <h2 className="h2"><K k={t.voorWieKop} /></h2>
-          </div>
-          <div className="g4">
-            {t.voorWie.map((v) => (
-              <div key={v.titel} className="card col rv lift kaart-pad">
-                <h3 className="h3">{v.titel}</h3>
-                <p className="sm">{v.tekst}</p>
-              </div>
-            ))}
-          </div>
+      {/* [4] Voor wie: situaties als uitklappende fotopanelen */}
+      <section className="sec peach" style={{ paddingBottom: "calc(clamp(72px,9vw,112px) + var(--golf))" }}>
+        <div className="wrap">
+          <SectieKop eb="Voor wie" titel={<K k={t.voorWieKop} />} />
+          <Panelen
+            items={t.voorWie.map((s, i) => ({ titel: s.titel, tekst: s.tekst, label: dienst.naam, foto: FOTO[v.situaties[i]] }))}
+          />
         </div>
       </section>
 
@@ -106,37 +106,37 @@ export default async function DienstPagina({ params }: Props) {
 
       {/* [6] Tarief + [7] plaatsen */}
       <section className="sec">
-        <div className="wrap g2" style={{ gap: 64, alignItems: "start" }}>
-          <div className="col rv" style={{ gap: 18 }}>
+        <div className="wrap split">
+          <div className="kopblok rv">
             <div className="eb">Tarief</div>
             <h2 className="h2"><K k={t.tariefKop} /></h2>
-            <p className="lead">{t.tariefTekst}</p>
-            <div>
+            <p className="sm" style={{ fontSize: 17 }}>{t.tariefTekst}</p>
+            <div className="rijen">
               {dienst.tarieven.map((r) => (
-                <div key={r.label} className="tr"><span>{r.label}, {r.eenheid}</span><b>{r.prijs}</b></div>
+                <div key={r.label} className="r twee"><b>{r.label}, {r.eenheid}</b><span className="bedrag">{r.prijs}</span></div>
               ))}
-              <div className="tr"><span>Kennismaking thuis</span><b>Kosteloos</b></div>
+              <div className="r twee"><b>Kennismaking thuis</b><span className="bedrag">Kosteloos</span></div>
             </div>
             <div className="col" style={{ gap: 10 }}>
-              <div style={{ fontWeight: 700, fontSize: 15 }}>Te betalen via</div>
+              <div style={{ fontWeight: 700, fontSize: 14.5, color: "var(--ink)" }}>Te betalen via</div>
               <Tags items={site.financiering} />
             </div>
             <div className="row"><Link className="btn2" href="/tarieven-en-vergoeding">Tarieven en vergoeding <Pijl /></Link></div>
           </div>
-          <div className="col rv" style={{ gap: 18 }}>
+          <div className="kopblok rv">
             <div className="eb">{dienst.naam} in uw plaats</div>
             <h2 className="h2"><K k={t.plaatsenKop} /></h2>
-            <p className="lead">Kies uw plaats voor de lokale pagina.</p>
+            <p className="sm" style={{ fontSize: 17 }}>Kies uw plaats voor de lokale pagina.</p>
             <PlaatsPills dienst={dienst.slug} prefix={`${dienst.naam} in `} />
           </div>
         </div>
       </section>
 
       {/* [8] FAQ */}
-      <FaqSectie kop={<>Vragen over <span className="it">{dienst.naam.toLowerCase()}.</span></>} vragen={t.faq} />
+      <FaqSectie kop={<>Vragen over <Accent>{`${dienst.naam.toLowerCase()}.`}</Accent></>} vragen={t.faq} />
 
       {/* [9] CTA */}
-      <CtaBlok label={t.cta.label} titel={<K k={t.cta.kop} />} />
+      <CtaBlok label={t.cta.label} titel={<K k={t.cta.kop} />} foto={v.ctaFoto} ill={v.ctaIll} />
     </main>
   );
 }

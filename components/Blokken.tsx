@@ -17,12 +17,15 @@ export function JsonLd({ data }: { data: unknown }) {
 }
 
 // Kop met een cursief accentwoord en de hartlijn.
+// Losse leestekens na het accent gaan mee in het accent, zodat een punt
+// nooit alleen op een nieuwe regel belandt.
 export function K({ k }: { k: Kop }) {
+  const leesteken = k.na && /^[.,?!]$/.test(k.na);
   return (
     <>
       {k.voor}
-      <Accent>{k.it}</Accent>
-      {k.na}
+      <Accent>{leesteken ? `${k.it}${k.na}` : k.it}</Accent>
+      {!leesteken && k.na}
     </>
   );
 }
