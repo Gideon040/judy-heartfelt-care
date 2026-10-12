@@ -1,3 +1,5 @@
+ALLE BESTAANDE SEO-TEKSTEN BLIJVEN LETTERLIJK BEHOUDEN. Design en code mogen veranderen, tekst, koppen, FAQ's, links, meta en schema niet (behalve em dashes vervangen).
+
 # Zorgbaar startpakket — afspraken voor klantsites
 
 ## Wat dit is
