@@ -15,7 +15,7 @@ Alle klantgegevens staan in `site.config.ts`; teksten per dienst in
   per plaats haar eigen zin (`eigenZin`), Wtza-status, geschilleninstantie,
   klachtenfunctionaris, aansprakelijkheidsverzekering.
   Lege velden worden op de site overgeslagen.
-- Foto's die met `tijdelijk-` beginnen vervangen.
+- Foto's: alle tijdelijke foto's zijn vervangen door Judy's eigen foto's (redesign).
 - Juridische teksten laten nalezen.
 - Kennisbank: artikelen schrijven in het portaal (blok op home pas bij 3+).
 - Reviews: `/reviews` geeft 404 tot er 3 echte reviews in de config staan.

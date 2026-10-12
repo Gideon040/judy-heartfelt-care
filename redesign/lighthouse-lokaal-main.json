@@ -1,0 +1,112 @@
+[
+ {
+  "vorm": "mobile",
+  "pagina": "/",
+  "performance": 95,
+  "accessibility": 95,
+  "best-practices": 100,
+  "seo": 100,
+  "lcp": 2929,
+  "cls": 0,
+  "tbt": 60
+ },
+ {
+  "vorm": "mobile",
+  "pagina": "/zorg/begeleiding",
+  "performance": 97,
+  "accessibility": 95,
+  "best-practices": 100,
+  "seo": 100,
+  "lcp": 2635,
+  "cls": 0,
+  "tbt": 31
+ },
+ {
+  "vorm": "mobile",
+  "pagina": "/over",
+  "performance": 96,
+  "accessibility": 95,
+  "best-practices": 100,
+  "seo": 100,
+  "lcp": 2709,
+  "cls": 0,
+  "tbt": 29
+ },
+ {
+  "vorm": "mobile",
+  "pagina": "/tarieven-en-vergoeding",
+  "performance": 97,
+  "accessibility": 95,
+  "best-practices": 100,
+  "seo": 100,
+  "lcp": 2558,
+  "cls": 0,
+  "tbt": 59
+ },
+ {
+  "vorm": "mobile",
+  "pagina": "/zorg/nachtzorg/maastricht",
+  "performance": 95,
+  "accessibility": 95,
+  "best-practices": 100,
+  "seo": 100,
+  "lcp": 2860,
+  "cls": 0,
+  "tbt": 30
+ },
+ {
+  "vorm": "desktop",
+  "pagina": "/",
+  "performance": 100,
+  "accessibility": 95,
+  "best-practices": 100,
+  "seo": 100,
+  "lcp": 666,
+  "cls": 0,
+  "tbt": 0
+ },
+ {
+  "vorm": "desktop",
+  "pagina": "/zorg/begeleiding",
+  "performance": 100,
+  "accessibility": 95,
+  "best-practices": 100,
+  "seo": 100,
+  "lcp": 564,
+  "cls": 0,
+  "tbt": 0
+ },
+ {
+  "vorm": "desktop",
+  "pagina": "/over",
+  "performance": 100,
+  "accessibility": 95,
+  "best-practices": 100,
+  "seo": 100,
+  "lcp": 578,
+  "cls": 0,
+  "tbt": 0
+ },
+ {
+  "vorm": "desktop",
+  "pagina": "/tarieven-en-vergoeding",
+  "performance": 100,
+  "accessibility": 95,
+  "best-practices": 100,
+  "seo": 100,
+  "lcp": 579,
+  "cls": 0,
+  "tbt": 0
+ },
+ {
+  "vorm": "desktop",
+  "pagina": "/zorg/nachtzorg/maastricht",
+  "performance": 100,
+  "accessibility": 95,
+  "best-practices": 100,
+  "seo": 100,
+  "lcp": 619,
+  "cls": 0,
+  "tbt": 0
+ }
+]

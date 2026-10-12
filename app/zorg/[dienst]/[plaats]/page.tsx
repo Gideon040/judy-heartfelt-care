@@ -125,7 +125,7 @@ export default async function DienstPlaatsPagina({ params }: Props) {
       <section className="sec met-golf">
         <div className="wrap split mid">
           <div className="plaats-foto rv">
-            <Foto src={FOTO.straat.src} alt={FOTO.straat.alt} sizes="(max-width: 1020px) 90vw, 440px" />
+            <Foto src={FOTO.voordeur.src} alt={FOTO.voordeur.alt} positie="45% 40%" sizes="(max-width: 1020px) 90vw, 440px" />
           </div>
           <div className="kopblok rv">
             <div className="eb">Zorg in {plaats.naam}</div>

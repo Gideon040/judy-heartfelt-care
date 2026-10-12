@@ -184,10 +184,10 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Begeleider en cliënt in gesprek aan tafel",
-   "Huishoudelijke hulp aan het werk in de keuken",
    "Nachtzorg aan huis",
+   "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
    "Portret van Judy Hernandez",
+   "Samen een pgb-formulier invullen",
    "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
    "Zorgverlener en oudere man samen bezig aan tafel",
    "Zorgverlener en oudere vrouw lachen samen aan de keukentafel",
@@ -334,8 +334,8 @@
   ],
   "alts": [
    "Portret van Judy Hernandez",
-   "Zorgverlener en cliënt lachen samen",
-   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging"
   ],
   "faq": [],
   "meta": {
@@ -487,8 +487,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Familie neemt samen de kosten door",
-   "Samen een pgb-formulier invullen"
+   "Samen een pgb-formulier invullen",
+   "Zorgverlener en oudere vrouw lachen samen aan de keukentafel"
   ],
   "faq": [
    {
@@ -608,7 +608,7 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Kennismaking aan de voordeur"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [],
   "meta": {
@@ -1456,10 +1456,10 @@
   ],
   "alts": [
    "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
+   "Zorgverlener bij een cliënt in de avond",
    "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
    "Zorgverlener en oudere man samen bezig aan tafel",
-   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging"
   ],
   "faq": [
    {
@@ -1643,9 +1643,9 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Begeleider en cliënt in gesprek aan tafel",
    "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
-   "Zorgverlener en cliënt lachen samen",
+   "Samen een pgb-formulier invullen",
+   "Zorgverlener bij een cliënt in de avond",
    "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
    "Zorgverlener en oudere vrouw lachen samen aan de keukentafel"
   ],
@@ -1839,10 +1839,10 @@
   ],
   "alts": [
    "Nachtzorg aan huis",
+   "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
    "Zorgverlener bij een cliënt in de avond",
    "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
-   "Zorgverlener houdt de hand vast van een oudere vrouw in bed",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener houdt de hand vast van een oudere vrouw in bed"
   ],
   "faq": [
    {
@@ -2027,7 +2027,7 @@
   ],
   "alts": [
    "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
-   "Zorgverlener en cliënt lachen samen",
+   "Zorgverlener bij een cliënt in de avond",
    "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
    "Zorgverlener en oudere man samen bezig aan tafel",
    "Zorgverlener en oudere vrouw lachen samen aan de keukentafel"
@@ -2214,11 +2214,11 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Huishoudelijke hulp aan het werk in de keuken",
    "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
    "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
-   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en oudere man samen bezig aan tafel",
+   "Zorgverlener en oudere vrouw lachen samen aan de keukentafel",
+   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging"
   ],
   "faq": [
    {
@@ -2405,7 +2405,7 @@
    "Nachtzorg aan huis",
    "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
    "Zorgverlener bij een cliënt in de avond",
-   "Zorgverlener en cliënt lachen samen",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
    "Zorgverlener houdt de hand vast van een oudere vrouw in bed"
   ],
   "faq": [
@@ -2591,8 +2591,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging"
   ],
   "faq": [
    {
@@ -2775,8 +2775,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging"
   ],
   "faq": [
    {
@@ -2961,8 +2961,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging"
   ],
   "faq": [
    {
@@ -3147,8 +3147,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging"
   ],
   "faq": [
    {
@@ -3331,8 +3331,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging"
   ],
   "faq": [
    {
@@ -3515,8 +3515,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener helpt een oudere vrouw bij de ochtendverzorging"
   ],
   "faq": [
    {
@@ -3701,8 +3701,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Begeleider en cliënt in gesprek aan tafel",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Samen een pgb-formulier invullen",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -3885,8 +3885,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Begeleider en cliënt in gesprek aan tafel",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Samen een pgb-formulier invullen",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -4071,8 +4071,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Begeleider en cliënt in gesprek aan tafel",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Samen een pgb-formulier invullen",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -4257,8 +4257,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Begeleider en cliënt in gesprek aan tafel",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Samen een pgb-formulier invullen",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -4441,8 +4441,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Begeleider en cliënt in gesprek aan tafel",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Samen een pgb-formulier invullen",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -4625,8 +4625,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Begeleider en cliënt in gesprek aan tafel",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Samen een pgb-formulier invullen",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -4809,7 +4809,7 @@
   ],
   "alts": [
    "Nachtzorg aan huis",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -4990,7 +4990,7 @@
   ],
   "alts": [
    "Nachtzorg aan huis",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -5173,7 +5173,7 @@
   ],
   "alts": [
    "Nachtzorg aan huis",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -5356,7 +5356,7 @@
   ],
   "alts": [
    "Nachtzorg aan huis",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -5537,7 +5537,7 @@
   ],
   "alts": [
    "Nachtzorg aan huis",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -5718,7 +5718,7 @@
   ],
   "alts": [
    "Nachtzorg aan huis",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -5903,8 +5903,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener en oudere man samen bezig aan tafel",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener en oudere man samen bezig aan tafel"
   ],
   "faq": [
    {
@@ -6087,8 +6087,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener en oudere man samen bezig aan tafel",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener en oudere man samen bezig aan tafel"
   ],
   "faq": [
    {
@@ -6273,8 +6273,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener en oudere man samen bezig aan tafel",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener en oudere man samen bezig aan tafel"
   ],
   "faq": [
    {
@@ -6459,8 +6459,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener en oudere man samen bezig aan tafel",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener en oudere man samen bezig aan tafel"
   ],
   "faq": [
    {
@@ -6643,8 +6643,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener en oudere man samen bezig aan tafel",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener en oudere man samen bezig aan tafel"
   ],
   "faq": [
    {
@@ -6827,8 +6827,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener en oudere man samen bezig aan tafel",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener en oudere man samen bezig aan tafel"
   ],
   "faq": [
    {
@@ -7013,8 +7013,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Huishoudelijke hulp aan het werk in de keuken",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -7197,8 +7197,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Huishoudelijke hulp aan het werk in de keuken",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -7383,8 +7383,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Huishoudelijke hulp aan het werk in de keuken",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -7569,8 +7569,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Huishoudelijke hulp aan het werk in de keuken",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -7753,8 +7753,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Huishoudelijke hulp aan het werk in de keuken",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -7937,8 +7937,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Huishoudelijke hulp aan het werk in de keuken",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw"
   ],
   "faq": [
    {
@@ -8123,8 +8123,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener houdt de hand vast van een oudere vrouw in bed",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener houdt de hand vast van een oudere vrouw in bed"
   ],
   "faq": [
    {
@@ -8307,8 +8307,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener houdt de hand vast van een oudere vrouw in bed",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener houdt de hand vast van een oudere vrouw in bed"
   ],
   "faq": [
    {
@@ -8493,8 +8493,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener houdt de hand vast van een oudere vrouw in bed",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener houdt de hand vast van een oudere vrouw in bed"
   ],
   "faq": [
    {
@@ -8679,8 +8679,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener houdt de hand vast van een oudere vrouw in bed",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener houdt de hand vast van een oudere vrouw in bed"
   ],
   "faq": [
    {
@@ -8863,8 +8863,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener houdt de hand vast van een oudere vrouw in bed",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener houdt de hand vast van een oudere vrouw in bed"
   ],
   "faq": [
    {
@@ -9047,8 +9047,8 @@
    "tel:+31686353313"
   ],
   "alts": [
-   "Zorgverlener houdt de hand vast van een oudere vrouw in bed",
-   "Zorgverlener loopt met een oudere man met rollator door de straat"
+   "Zorgverlener en dochter bij de voordeur van een oudere vrouw",
+   "Zorgverlener houdt de hand vast van een oudere vrouw in bed"
   ],
   "faq": [
    {

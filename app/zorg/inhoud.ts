@@ -87,9 +87,9 @@ export const inhoud: Record<string, DienstInhoud> = {
 
   begeleiding: {
     kaart: "Structuur, een luisterend oor en samen op pad, thuis of onderweg.",
-    afbeelding: "/afbeeldingen/tijdelijk-02-begeleiding.jpg",
+    afbeelding: "/afbeeldingen/judy-14-formulier-pgb.webp",
     positie: "50% 50%",
-    alt: "Begeleider en cliënt in gesprek aan tafel",
+    alt: "Samen een pgb-formulier invullen",
     heroKop: k("Begeleiding aan huis, ", "zodat de dag weer klopt", "."),
     heroLead:
       "Ondersteuning bij structuur, afspraken en contact met anderen. Thuis of onderweg, door een vaste begeleider, ook in het weekend.",
@@ -236,9 +236,9 @@ export const inhoud: Record<string, DienstInhoud> = {
 
   "huishoudelijke-hulp": {
     kaart: "Een schoon en opgeruimd huis, zodat thuis ook thuis blijft voelen.",
-    afbeelding: "/afbeeldingen/tijdelijk-05-huishoudelijke-hulp.jpg",
-    positie: "50% 50%",
-    alt: "Huishoudelijke hulp aan het werk in de keuken",
+    afbeelding: "/afbeeldingen/judy-10-bij-het-raam.webp",
+    positie: "40% 50%",
+    alt: "Oudere vrouw zit in haar leunstoel bij het raam, in het licht van een leeslamp",
     heroKop: k("Huishoudelijke hulp, zodat thuis ", "thuis blijft", "."),
     heroLead:
       "Een schoon en opgeruimd huis, door een vast gezicht dat u kent. Vanaf één uur per week, ook in combinatie met verzorging of begeleiding.",

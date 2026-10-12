@@ -27,7 +27,7 @@ export default function Reviews() {
         eb="Ervaringen"
         titel={<>Wat cliënten en families <Accent>over ons zeggen.</Accent></>}
         lead="Alleen echte ervaringen, met voornaam en datum."
-        foto={{ src: "/afbeeldingen/tijdelijk-09-tuinbankje.jpg", alt: "Zorgverlener en cliënt lachen samen" }}
+        foto={{ src: "/afbeeldingen/judy-00-hero-keukentafel.webp", alt: "Zorgverlener en oudere vrouw lachen samen aan de keukentafel" }}
       />
       <section className="sec">
         <div className="wrap col" style={{ gap: 40 }}>

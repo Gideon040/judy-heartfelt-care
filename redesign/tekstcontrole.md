@@ -17,8 +17,8 @@ terugkomt (em dashes en apostrofvorm genegeerd).
 - **Elke kop komt terug, op hetzelfde niveau.** Geen kop kwijt, geen kopniveau veranderd.
 - **Elke FAQ-vraag en elk antwoord** staat letterlijk op dezelfde pagina, inclusief FAQPage-schema.
 - **Meta (title, description, canonical, robots) en JSON-LD** zijn op alle 54 pagina's identiek aan vóór.
-- **Alle interne links en alt-teksten** van vóór zijn er nog (er zijn alt-teksten bijgekomen bij nieuwe foto's in de panelen).
-- Woorden: 51 pagina's gelijk of hoger; `/contact` daalt met 2 woorden (zie hieronder).
+- **Alle interne links** van vóór zijn er nog. **Alt-teksten:** alle alt-teksten van Judy's eigen foto's zijn er nog; de alt-teksten van de zes verwijderde `tijdelijk-`-foto's zijn op verzoek van Gideon mee verdwenen (de foto's bestaan niet meer, zie overdracht). Op 36 locatiepagina's gaat het om de straatfoto in het plaatsblok.
+- Woorden: 53 pagina's gelijk of hoger; `/contact` daalt met 2 woorden (zie hieronder).
 
 ## Bewuste afwijkingen (3 pagina's)
 

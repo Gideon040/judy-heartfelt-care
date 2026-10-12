@@ -82,7 +82,7 @@ export default async function Home() {
           </div>
           <div className="boog">
             <div className="boog-foto">
-              <Foto src={FOTO.keukentafel.src} alt={FOTO.keukentafel.alt} positie="62% 45%" sizes="(max-width: 1020px) 90vw, 440px" preload />
+              <Foto src={FOTO.keukentafel.src} alt={FOTO.keukentafel.alt} positie="62% 45%" sizes="(max-width: 640px) 300px, 400px" preload />
             </div>
             <svg className="hartlijn" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true" focusable="false">
               <path pathLength={1} d="M30 470 C10 300 20 150 90 70 C150 5 250 5 310 70 C380 150 392 300 372 470 M372 470 C372 440 350 420 330 432 C312 410 284 420 290 446 C296 470 330 488 342 500" />
@@ -240,7 +240,7 @@ export default async function Home() {
         </section>
       )}
 
-      <CtaBlok id="aanvraag" label="Vandaag een zorgvraag? Morgen aan tafel." titel={<>Vertel ons wat er nodig is, <Accent>wij regelen de rest</Accent></>} foto="tuinbankje" ill="bel" />
+      <CtaBlok id="aanvraag" label="Vandaag een zorgvraag? Morgen aan tafel." titel={<>Vertel ons wat er nodig is, <Accent>wij regelen de rest</Accent></>} foto="avond" ill="bel" />
     </main>
   );
 }

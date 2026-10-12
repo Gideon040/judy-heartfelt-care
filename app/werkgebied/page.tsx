@@ -25,7 +25,7 @@ export default function Werkgebied() {
         eb="Werkgebied"
         titel={<>Zorg aan huis in <Accent>{`${site.regio}.`}</Accent></>}
         lead="Dit zijn de plaatsen waar wij vast komen. Kies uw plaats om te zien wat wij daar doen."
-        foto={{ src: "/afbeeldingen/tijdelijk-voordeur-werkgebied.jpg", alt: "Kennismaking aan de voordeur" }}
+        foto={{ src: "/afbeeldingen/judy-07-voordeur.webp", alt: "Zorgverlener en dochter bij de voordeur van een oudere vrouw", positie: "50% 36%" }}
       />
 
       <section className="sec met-golf">
@@ -81,7 +81,7 @@ export default function Werkgebied() {
         <Golf kleur="cream" />
       </section>
 
-      <CtaBlok label="Zorg nodig in uw plaats?" titel={<>Wij kijken of het <Accent>te regelen is.</Accent></>} foto="voordeurWerkgebied" ill="huis" />
+      <CtaBlok label="Zorg nodig in uw plaats?" titel={<>Wij kijken of het <Accent>te regelen is.</Accent></>} foto="voordeur" ill="huis" />
     </main>
   );
 }

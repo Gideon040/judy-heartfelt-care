@@ -38,7 +38,9 @@ export function Foto({ src, alt, positie = "50% 50%", sizes = "(max-width: 1020p
   preload?: boolean;
 }) {
   return (
-    <Image src={src} alt={alt} fill sizes={sizes} preload={preload} fetchPriority={preload ? "high" : undefined}
+    // Herofoto's: eager laden maar zonder preload/hoge prioriteit, zodat de
+    // foto niet concurreert met tekst en fonts (de LCP is hier de lead-tekst).
+    <Image src={src} alt={alt} fill sizes={sizes} loading={preload ? "eager" : undefined}
       style={{ objectFit: "cover", objectPosition: positie }} />
   );
 }
@@ -78,7 +80,7 @@ export function Kruimelpad({ items, licht = false }: { items: { naam: string; pa
 const HARTLIJN = "M30 470 C10 300 20 150 90 70 C150 5 250 5 310 70 C380 150 392 300 372 470 M372 470 C372 440 350 420 330 432 C312 410 284 420 290 446 C296 470 330 488 342 500";
 
 // Boogfoto met de hartlijn eromheen, eindigend in een klein hartje.
-export function Boog({ src, alt, positie, sizes = "(max-width: 1020px) 90vw, 440px", preload = false, klein = false }: {
+export function Boog({ src, alt, positie, sizes = "(max-width: 640px) 220px, 400px", preload = false, klein = false }: {
   src: string; alt: string; positie?: string; sizes?: string; preload?: boolean; klein?: boolean;
 }) {
   return (
@@ -118,7 +120,8 @@ export function HeroSub({ kruimels, eb, titel, lead, acties, foto, feiten = !!fo
             </div>
           )}
         </div>
-        {foto && <Boog src={foto.src} alt={foto.alt} positie={foto.positie} preload />}
+        {/* Lazy: op mobiel staat de boog onder de tekst (vroeger was hij daar verborgen). */}
+        {foto && <Boog src={foto.src} alt={foto.alt} positie={foto.positie} />}
       </div>
       <Golf kleur={golf} vorm="hero" className="golf-hero" />
     </section>

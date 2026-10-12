@@ -37,7 +37,7 @@ export default function Over() {
         titel={<>Zorg die om de mens heen <Accent>wordt georganiseerd.</Accent></>}
         lead={`Een particuliere thuiszorgorganisatie in ${site.regio}. Bewust kleinschalig, zodat u altijd weet wie er binnenkomt.`}
         acties={<ZorgvraagKnop>Kennismaken</ZorgvraagKnop>}
-        foto={{ src: FOTO.tuinbankje.src, alt: FOTO.tuinbankje.alt, positie: "50% 30%" }}
+        foto={{ src: FOTO.verzorging.src, alt: FOTO.verzorging.alt, positie: "45% 32%" }}
       />
 
       {/* [1] Verhaal, met het portret zonder lijn */}

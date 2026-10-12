@@ -75,7 +75,7 @@ export default function Tarieven() {
         titel={<>Wat kost thuiszorg bij <Accent>{`${site.naam}?`}</Accent></>}
         lead="Een vast tarief per uur of per nacht, vooraf op papier. Geen opstartkosten en geen btw, want zorg is daarvan vrijgesteld."
         acties={<ZorgvraagKnop>Prijsopgave aanvragen</ZorgvraagKnop>}
-        foto={{ src: FOTO.tarieven.src, alt: FOTO.tarieven.alt }}
+        foto={{ src: FOTO.keukentafel.src, alt: FOTO.keukentafel.alt, positie: "62% 45%" }}
       />
 
       {/* Tarieven per zorgvorm */}

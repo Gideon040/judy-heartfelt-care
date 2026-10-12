@@ -37,6 +37,19 @@ export function useReveal() {
       io.observe(el);
     });
 
+    // Illustraties buiten beeld pauzeren: SVG-animaties lopen op de
+    // hoofdthread, ook als je ze niet ziet.
+    const pauze = new IntersectionObserver(
+      (items) => {
+        for (const it of items) it.target.classList.toggle("pauze", !it.isIntersecting);
+      },
+      { rootMargin: "100px 0px" }
+    );
+    document.querySelectorAll<HTMLElement>(".tegel, .cta-tegel, .belofte-rij, .kaartvlak, .tijdlijn-balk").forEach((el) => {
+      el.classList.add("pauze");
+      pauze.observe(el);
+    });
+
     // Stappen: lijn en reizend hartje
     const svg = document.querySelector<SVGSVGElement>("[data-stappad]");
     const lijn = svg?.querySelector<SVGPathElement>(".lijn");
@@ -69,6 +82,7 @@ export function useReveal() {
     }
     return () => {
       io.disconnect();
+      pauze.disconnect();
       window.removeEventListener("scroll", opScroll);
       window.removeEventListener("resize", opScroll);
       cancelAnimationFrame(rAF);

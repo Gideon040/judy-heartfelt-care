@@ -16,7 +16,7 @@ const chrome = await chromeLauncher.launch({
 });
 const mediaan = (a) => { const s = [...a].sort((x, y) => x - y); return s[Math.floor(s.length / 2)]; };
 const res = [];
-for (const vorm of ["mobile", "desktop"]) {
+for (const vorm of (process.env.VORMEN ?? "mobile,desktop").split(",")) {
   for (const p of paginas) {
     const scores = Object.fromEntries(cats.map((c) => [c, []]));
     const extra = { lcp: [], cls: [], tbt: [] };
