@@ -612,3 +612,4 @@ h1,h2,h3,h4,p{margin:0}
   .aankondiging-tekst{flex-direction:column;align-items:flex-start}
   .hero-feiten{flex-direction:column;gap:8px}
 }
+.tekstlink svg{vertical-align:-3px;margin-left:4px}
