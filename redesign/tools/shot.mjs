@@ -26,8 +26,8 @@ for (const [naam, breedte] of [["desktop", 1440], ["mobiel", 375]]) {
     });
     await page.waitForTimeout(800);
     const breedOverflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
-    const bestand = `${map}/${prefix}-${(pad === "/" ? "home" : pad.replace(/^\//, "").replace(/\//g, "_")) || "home"}-${naam}.png`;
-    await page.screenshot({ path: bestand, fullPage: true });
+    const bestand = `${map}/${prefix}-${(pad === "/" ? "home" : pad.replace(/^\//, "").replace(/\//g, "_")) || "home"}-${naam}.jpg`;
+    await page.screenshot({ path: bestand, fullPage: true, type: "jpeg", quality: 72 });
     console.log(bestand, breedOverflow > 0 ? `HORIZONTALE SCROLL ${breedOverflow}px` : "");
   }
   await ctx.close();

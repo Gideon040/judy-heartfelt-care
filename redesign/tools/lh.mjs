@@ -7,7 +7,7 @@ import { writeFileSync } from "node:fs";
 const basis = process.argv[2];
 const uit = process.argv[3];
 const runs = Number(process.argv[4] ?? 3);
-const paginas = ["/", "/zorg/begeleiding", "/over", "/tarieven-en-vergoeding", "/zorg/nachtzorg/maastricht"];
+const paginas = process.env.PAGINAS ? process.env.PAGINAS.split(",") : ["/", "/zorg/begeleiding", "/over", "/tarieven-en-vergoeding", "/zorg/nachtzorg/maastricht"];
 const cats = ["performance", "accessibility", "best-practices", "seo"];
 
 const chrome = await chromeLauncher.launch({

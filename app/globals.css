@@ -360,7 +360,7 @@ h1,h2,h3,h4,p{margin:0}
 /* Regio's en kaart */
 .regio{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);align-items:center}
 .regio-keuze{position:absolute;opacity:0;pointer-events:none}
-.seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:99px;padding:5px;margin:4px 0 6px}
+.seg{align-self:flex-start;display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:99px;padding:5px;margin:4px 0 6px}
 .seg label{font:700 15px var(--sans);color:var(--ink);padding:10px 20px;border-radius:99px;cursor:pointer;transition:background .3s,color .3s}
 .regio-paneel h3{font-size:22px}
 .regio-paneel p{color:var(--muted);margin:6px 0 16px}
