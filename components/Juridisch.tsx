@@ -23,18 +23,18 @@ export function JuriPagina({ naam, pad, titel, lead, zijKop = "Vragen hierover?"
   return (
     <main>
       <HeroSub kruimels={[{ naam, pad }]} eb={naam} titel={titel} lead={lead} />
-      <section style={{ padding: "48px 0 96px" }}>
+      <section className="sec" style={{ paddingTop: 24 }}>
         <div className="wrap juri">
-          <div className="juri-tekst">{children}</div>
-          <aside className="col juri-zij">
-            <div className="dk zij-donker">
+          <div>{children}</div>
+          <aside className="juri-zij">
+            <div className="dk zij-donker rv">
               <h2 className="h3">{zijKop}</h2>
               {zijTekst}
               <a className="tel" href={`tel:${site.telefoon}`}>{site.telefoonWeergave}</a>
-              <a className="sm" href={`mailto:${site.email}`} style={{ overflowWrap: "anywhere", color: "#CBBBC8" }}>{site.email}</a>
+              <a className="sm" href={`mailto:${site.email}`} style={{ overflowWrap: "anywhere", color: "#C9BDCD" }}>{site.email}</a>
             </div>
-            <div className="card col" style={{ padding: 24, gap: 12 }}>
-              <div style={{ fontWeight: 800 }}>Ook juridisch</div>
+            <div className="zij-licht rv">
+              <div style={{ fontWeight: 800, color: "var(--ink)" }}>Ook juridisch</div>
               {PAGINAS.filter((p) => p.pad !== pad).map((p) => (
                 <Link key={p.pad} href={p.pad}>{p.naam}</Link>
               ))}

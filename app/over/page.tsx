@@ -45,7 +45,7 @@ export default function Over() {
           </div>
           <div className="rv" style={{ display: "flex", justifyContent: "center" }}>
             <div className="arch" style={{ width: "min(430px,100%)", overflow: "hidden" }}>
-              <Portret minHoogte={560} />
+              <Portret />
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function Over() {
             <h2 className="h2">Wie er bij u <span className="it">binnenkomt.</span></h2>
           </div>
           <div className="card rv" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(360px,100%),1fr))", overflow: "hidden", borderRadius: 32 }}>
-            <Portret minHoogte={420} />
+            <Portret />
             <div className="col" style={{ gap: 18, padding: "clamp(28px,4vw,52px)" }}>
               <div className="eb">{g.functie}</div>
               <h3 className="h3" style={{ fontSize: 36 }}>{g.naam}</h3>

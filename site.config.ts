@@ -53,7 +53,7 @@ const diensten = [
 // - "eigenZin": de ene zin van Judy over zorg in deze plaats (intake). Zolang
 //   die leeg is, slaat de pagina dat blok over.
 // - "context": alleen na te lopen feiten (ziekenhuis, gemeente, ligging).
-// - "kaart": positie op het schematische kaartje (viewBox 440×260).
+// - "kaart": positie op de kaart van Limburg (viewBox 400×400, redesign).
 const alleDiensten = diensten.map((d) => d.slug);
 const werkgebied = [
   {
@@ -67,7 +67,7 @@ const werkgebied = [
       "Wie in het Maastricht UMC+ is opgenomen, komt vaak sneller thuis dan de omgeving had verwacht. Dan moet de zorg thuis meteen staan.",
     dichtbij: ["meerssen", "valkenburg-aan-de-geul", "beek"],
     eigenZin: "",
-    kaart: { x: 178, y: 172 },
+    kaart: { x: 214, y: 336 },
     diensten: alleDiensten,
   },
   {
@@ -81,7 +81,7 @@ const werkgebied = [
       "Het dichtstbijzijnde ziekenhuis is het Maastricht UMC+. In de kleinere kernen woont men vaak al een leven lang in hetzelfde huis, en daar wil men ook blijven.",
     dichtbij: ["maastricht", "valkenburg-aan-de-geul", "beek"],
     eigenZin: "",
-    kaart: { x: 236, y: 116 },
+    kaart: { x: 250, y: 314 },
     diensten: alleDiensten,
   },
   {
@@ -95,7 +95,7 @@ const werkgebied = [
       "Het Heuvelland is mooi, maar heuvels, trappen en drempels maken thuis wonen zwaarder naarmate iemand minder mobiel wordt. Dat nemen wij mee in de afspraken.",
     dichtbij: ["meerssen", "maastricht", "heerlen"],
     eigenZin: "",
-    kaart: { x: 290, y: 150 },
+    kaart: { x: 270, y: 336 },
     diensten: alleDiensten,
   },
   {
@@ -109,7 +109,7 @@ const werkgebied = [
       "Het ziekenhuis is Zuyderland Medisch Centrum in Sittard-Geleen. Na een opname daar regelen wij de zorg thuis zodat de eerste dagen niet op de familie neerkomen.",
     dichtbij: ["beek", "meerssen"],
     eigenZin: "",
-    kaart: { x: 300, y: 40 },
+    kaart: { x: 230, y: 262 },
     diensten: alleDiensten,
   },
   {
@@ -123,7 +123,7 @@ const werkgebied = [
       "Het ziekenhuis is Zuyderland Medisch Centrum in Heerlen. Wij stemmen af met de huisarts en de wijkverpleging die al bij u over de vloer komen.",
     dichtbij: ["valkenburg-aan-de-geul", "meerssen"],
     eigenZin: "",
-    kaart: { x: 350, y: 110 },
+    kaart: { x: 292, y: 300 },
     diensten: alleDiensten,
   },
   {
@@ -137,7 +137,7 @@ const werkgebied = [
       "Voor het ziekenhuis gaat u vanuit Beek naar Zuyderland in Sittard-Geleen of naar het Maastricht UMC+. Thuis herstellen scheelt dus veel heen-en-weer reizen.",
     dichtbij: ["sittard-geleen", "meerssen", "maastricht"],
     eigenZin: "",
-    kaart: { x: 262, y: 70 },
+    kaart: { x: 236, y: 290 },
     diensten: alleDiensten,
   },
 ] as const;
@@ -190,6 +190,10 @@ export const site = {
   directPlek: true,
   kvk: "96481706",
   agb: "41552677",
+  // Redesign: volgens eerdere informatie heeft Judy geen AGB-code. Het nummer
+  // blijft in het schema staan (meta/schema ongewijzigd), maar wordt op de
+  // pagina's pas getoond als Gideon het bevestigt: dan true zetten.
+  agbTonen: false,
   vog: true,
   // Leeg = niet tonen. Invullen zodra Judy het aanlevert.
   wtza: "", // TODO: Wtza-status (melding/vergunning)
@@ -227,6 +231,14 @@ export const site = {
   reviews: [] as readonly { tekst: string; voornaam: string; plaats: string; datum: string }[],
   diensten,
   werkgebied,
+  // Regio's voor de schakelaar op home (redesign). Alleen bevestigde regio's
+  // worden in productie getoond. Regio Weert staat in het prototype, maar de
+  // plaatsen zijn nog niet bevestigd: bevestigd op true zetten en de plaatsen
+  // aan "werkgebied" toevoegen zodra Judy ze bevestigt.
+  regios: [
+    { naam: "Regio Maastricht", titel: "Maastricht en omgeving", plaatsen: werkgebied.map((p) => p.slug) as string[], bevestigd: true },
+    { naam: "Regio Weert", titel: "Weert en omgeving", plaatsen: [] as string[], bevestigd: false, voorstel: ["Weert", "Nederweert", "Stramproy", "Budel", "Leudal"] },
+  ],
 } as const;
 
 export type Dienst = (typeof diensten)[number];

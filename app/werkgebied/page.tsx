@@ -3,7 +3,7 @@ import Link from "next/link";
 import { site } from "@/site.config";
 import { CtaBlok, HeroSub, Tags } from "@/components/Blokken";
 import { Pijl } from "@/components/Iconen";
-import WerkgebiedKaart from "@/components/WerkgebiedKaart";
+import { LimburgKaart as WerkgebiedKaart } from "@/components/WerkgebiedKaart";
 
 export const metadata: Metadata = {
   title: `Werkgebied: thuiszorg in ${site.regio} | ${site.naam}`,

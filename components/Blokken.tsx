@@ -1,50 +1,53 @@
-// Bouwblokken die op meerdere pagina's terugkomen (structuurspec hoofdstuk 4).
+// Bouwstenen die op meerdere pagina's terugkomen (structuurspec hoofdstuk 4,
+// vormgeving redesign/LEESMIJ.md).
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { site } from "@/site.config";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import type { Kop } from "@/app/zorg/inhoud";
+import Accent from "./Accent";
+import Golf, { type GolfKleur } from "./Golf";
+import { FOTO, type FotoNaam } from "./fotos";
 import { Pijl, Telefoon } from "./Iconen";
-import { StapKennismaking, StapStart, StapZorgvraag } from "./Illustraties";
+import { HART_PAD, Ill, type IllNaam } from "./Illustraties";
 
 export function JsonLd({ data }: { data: unknown }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }
 
-// Kop met een cursief accentwoord, zoals overal in het ontwerp.
+// Kop met een cursief accentwoord en de hartlijn.
 export function K({ k }: { k: Kop }) {
   return (
     <>
       {k.voor}
-      <span className="it">{k.it}</span>
+      <Accent>{k.it}</Accent>
       {k.na}
     </>
   );
 }
 
-export function Foto({ src, alt, positie = "50% 50%", sizes = "(max-width: 900px) 100vw, 50vw", priority = false }: {
+export function Foto({ src, alt, positie = "50% 50%", sizes = "(max-width: 1020px) 100vw, 50vw", preload = false }: {
   src: string;
   alt: string;
   positie?: string;
   sizes?: string;
-  priority?: boolean;
+  preload?: boolean;
 }) {
-  return <Image src={src} alt={alt} fill sizes={sizes} priority={priority} style={{ objectFit: "cover", objectPosition: positie }} />;
+  return (
+    <Image src={src} alt={alt} fill sizes={sizes} preload={preload} fetchPriority={preload ? "high" : undefined}
+      style={{ objectFit: "cover", objectPosition: positie }} />
+  );
 }
 
 export function BelKnop() {
-  return (
-    <a className="btn2" href={`tel:${site.telefoon}`}><Telefoon />{site.telefoonWeergave}</a>
-  );
+  return <a className="btn2" href={`tel:${site.telefoon}`}><Telefoon />{site.telefoonWeergave}</a>;
 }
 
 // zorg/plaats vullen de wizard alvast in.
 export function ZorgvraagKnop({ children = "Zorgvraag stellen", zorg, plaats }: { children?: ReactNode; zorg?: string; plaats?: string }) {
   const q = new URLSearchParams({ ...(zorg && { zorg }), ...(plaats && { plaats }) }).toString();
-  return (
-    <Link className="btn" href={q ? `/zorgvraag?${q}` : "/zorgvraag"}>{children} <Pijl /></Link>
-  );
+  return <Link className="btn" href={q ? `/zorgvraag?${q}` : "/zorgvraag"}>{children} <Pijl /></Link>;
 }
 
 // Kruimelpad + BreadcrumbList-schema. items van hoog naar laag, zonder Home.
@@ -56,7 +59,7 @@ export function Kruimelpad({ items, licht = false }: { items: { naam: string; pa
       <nav className={licht ? "crumb lt" : "crumb"} aria-label="Kruimelpad">
         {alle.map((it, i) =>
           i === alle.length - 1 ? (
-            <b key={it.pad}>{it.naam}</b>
+            <b key={it.pad} aria-current="page">{it.naam}</b>
           ) : (
             <span key={it.pad} style={{ display: "contents" }}>
               <Link href={it.pad || "/"}>{it.naam}</Link>
@@ -69,54 +72,93 @@ export function Kruimelpad({ items, licht = false }: { items: { naam: string; pa
   );
 }
 
+const HARTLIJN = "M30 470 C10 300 20 150 90 70 C150 5 250 5 310 70 C380 150 392 300 372 470 M372 470 C372 440 350 420 330 432 C312 410 284 420 290 446 C296 470 330 488 342 500";
+
+// Boogfoto met de hartlijn eromheen, eindigend in een klein hartje.
+export function Boog({ src, alt, positie, sizes = "(max-width: 1020px) 90vw, 440px", preload = false, klein = false }: {
+  src: string; alt: string; positie?: string; sizes?: string; preload?: boolean; klein?: boolean;
+}) {
+  return (
+    <div className={klein ? "boog klein" : "boog"}>
+      <div className="boog-foto"><Foto src={src} alt={alt} positie={positie} sizes={sizes} preload={preload} /></div>
+      <svg className="hartlijn" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d={HARTLIJN} pathLength={1} />
+      </svg>
+    </div>
+  );
+}
+
 // Donkere hero van alle subpagina's.
-export function HeroSub({ kruimels, eb, titel, lead, acties, foto }: {
+export function HeroSub({ kruimels, eb, titel, lead, acties, foto, feiten = !!foto, golf = "cream" }: {
   kruimels: { naam: string; pad: string }[];
-  eb: string;
+  eb?: string;
   titel: ReactNode;
   lead: ReactNode;
   acties?: ReactNode;
   foto?: { src: string; alt: string; positie?: string };
+  feiten?: boolean;
+  golf?: GolfKleur;
 }) {
   return (
-    <section className="dk hero-sub">
-      <span className="glow hero-gloed" aria-hidden="true" />
-      <div className="wrap col" style={{ gap: 30, position: "relative" }}>
-        <Kruimelpad items={kruimels} />
-        <div className={foto ? "hero-grid" : "hero-grid breed"}>
-          <div className="col" style={{ gap: 20, paddingBottom: 60 }}>
-            <div className="eb rise">{eb}</div>
-            <h1 className="h1 rise e2">{titel}</h1>
-            <p className="lead rise e3">{lead}</p>
-            {acties && <div className="row rise e4">{acties}</div>}
-          </div>
-          {foto && (
-            <div className="hv hs klein">
-              <div className="gl" />
-              <div className="pb"><Foto src={foto.src} alt={foto.alt} positie={foto.positie} sizes="300px" priority /></div>
-              <div className="stat float" style={{ right: 0, top: 34 }}><b>48 uur</b><span>tot kennismaking</span></div>
-              <div className="stat float f2" style={{ left: 0, bottom: 60 }}><b>7 dagen</b><span>per week, ook weekend</span></div>
+    <section className="hero hero-sub">
+      <div className={foto ? "wrap hero-grid" : "wrap hero-grid breed"}>
+        <div>
+          <Kruimelpad items={kruimels} />
+          {eb && <div className="eb fade" style={{ marginBottom: 18 }}>{eb}</div>}
+          <h1 className="h1">{titel}</h1>
+          <p className="lead fade">{lead}</p>
+          {acties && <div className="cta-row fade f2">{acties}</div>}
+          {feiten && (
+            <div className="hero-feiten fade f3">
+              <span><b>48 uur</b> tot kennismaking</span>
+              <span><b>7 dagen</b> per week, ook weekend</span>
             </div>
           )}
         </div>
+        {foto && <Boog src={foto.src} alt={foto.alt} positie={foto.positie} preload />}
       </div>
+      <Golf kleur={golf} vorm="hero" className="golf-hero" />
     </section>
   );
 }
 
-// Afsluitend CTA-blok (home blok 10 en verder op elke pagina).
-export function CtaBlok({ label, titel, id }: { label: string; titel: ReactNode; id?: string }) {
+// Sectiekop: eyebrow-pill, H2 met accent, optionele tekst rechts of eronder.
+export function SectieKop({ eb, titel, tekst, midden = false, className = "" }: {
+  eb: string; titel: ReactNode; tekst?: ReactNode; midden?: boolean; className?: string;
+}) {
   return (
-    <section id={id} style={{ padding: "0 0 96px" }}>
-      <div className="wrap rv">
-        <div className="cta-blok">
-          <span className="cirkel" aria-hidden="true" />
-          <div className="label">{label}</div>
-          <h2 className="h2">{titel}</h2>
-          <p className="lead">Online in twee minuten, of bel ons {site.bereikbaarKort}.</p>
-          <div className="row" style={{ justifyContent: "center", marginTop: 8 }}>
-            <ZorgvraagKnop />
-            <BelKnop />
+    <div className={`head rv${midden ? " midden" : ""} ${className}`}>
+      <div className={midden ? "kopblok midden" : "kopblok"}>
+        <div className="eb">{eb}</div>
+        <h2 className="h2">{titel}</h2>
+        {midden && tekst && <p className="lead">{tekst}</p>}
+      </div>
+      {!midden && tekst && <div className="head-tekst">{tekst}</div>}
+    </div>
+  );
+}
+
+// Afsluitende CTA-kaart: perzikverloop, boogfoto en een illustratietegel.
+export function CtaBlok({ label, titel, id, foto = "keukentafel", ill = "bel" }: {
+  label: string; titel: ReactNode; id?: string; foto?: FotoNaam; ill?: IllNaam;
+}) {
+  const f = FOTO[foto];
+  return (
+    <section id={id} className="cta-sec">
+      <div className="wrap">
+        <div className="cta rv">
+          <div>
+            <div className="cta-label">{label}</div>
+            <h2 className="h2">{titel}</h2>
+            <p>Online in twee minuten, of bel ons {site.bereikbaarKort}.</p>
+            <div className="cta-row">
+              <ZorgvraagKnop />
+              <BelKnop />
+            </div>
+          </div>
+          <div className="cta-beeld" aria-hidden="true">
+            <div className="cta-foto"><Foto src={f.src} alt="" sizes="320px" /></div>
+            <span className="cta-tegel"><Ill naam={ill} /></span>
           </div>
         </div>
       </div>
@@ -124,38 +166,48 @@ export function CtaBlok({ label, titel, id }: { label: string; titel: ReactNode;
   );
 }
 
-const ILLUSTRATIES = [StapZorgvraag, StapKennismaking, StapStart];
+const STAP_ILL: IllNaam[] = ["bel", "tafel", "huis"];
+const STAP_PAD = "M166 86 C200 20 300 10 340 40 S440 76 500 40 S620 4 680 34 S800 70 834 86";
 
-// "Zo werkt het": drie stappen op donker.
-export function Stappen({ kop, teksten, titels, midden = false, children }: {
+// "Zo werkt het": donkere sectie, drie stapkaarten met illustraties. Met
+// usp (alleen home) staan de deurfoto en de vier punten erboven en verbindt
+// een gestippelde hartlijn de stappen.
+export function Stappen({ kop, teksten, titels, usp, boven = "cream", onder = "cream" }: {
   kop: ReactNode;
   teksten: readonly [string, string, string];
   titels?: readonly [string, string, string];
-  midden?: boolean;
-  children?: ReactNode;
+  usp?: ReactNode;
+  boven?: GolfKleur | null;
+  onder?: GolfKleur;
 }) {
   const t = titels ?? ["Zorgvraag stellen", "Kennismaking binnen 48 uur", "Vaste zorg start"];
   return (
-    <section className="dk sec">
-      <div className="wrap col" style={{ gap: 48 }}>
-        <div className={midden ? "col rv kopblok midden" : "col rv kopblok"} style={{ maxWidth: midden ? undefined : 760 }}>
-          <div className="eb">Zo werkt het</div>
-          <h2 className="h2">{kop}</h2>
-        </div>
-        {children}
-        <div className="g3" style={{ gap: 20 }}>
-          {teksten.map((tekst, i) => {
-            const Ill = ILLUSTRATIES[i];
-            return (
-              <div key={i} className="col rv lift stap">
-                <div className="ill"><Ill /></div>
-                <div className="stap-kop"><span className="nc">{i + 1}</span><h3 className="h3">{t[i]}</h3></div>
-                <p className="sm">{tekst}</p>
-              </div>
-            );
-          })}
+    <section className="dk sec met-golf">
+      {boven && <Golf kleur="night" vorm="boven" className="golf-top" />}
+      <div className="gloedbal-vlak" aria-hidden="true"><div className="gloedbal" /></div>
+      <div className="wrap" style={{ position: "relative" }}>
+        <SectieKop eb="Zo werkt het" titel={kop} midden />
+        {usp}
+        <div className={usp ? "stappen-blok met-pad" : "stappen-blok"}>
+          {usp && (
+            <svg className="stap-pad" data-stappad="" viewBox="0 0 1000 86" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <path className="lijn" d={STAP_PAD} />
+              <path className="masker" d={STAP_PAD} pathLength={1} />
+              <g className="reiziger"><path d={HART_PAD} transform="translate(-11 -10) scale(.92)" fill="#F39A6B" /></g>
+            </svg>
+          )}
+          <ol className="stappen">
+          {teksten.map((tekst, i) => (
+            <li key={i} className="stap rv">
+              <div className="tegel"><Ill naam={STAP_ILL[i]} /></div>
+              <div className="stap-kop"><span className="nr">{i + 1}</span><h3 className="h3">{t[i]}</h3></div>
+              <p>{tekst}</p>
+            </li>
+          ))}
+          </ol>
         </div>
       </div>
+      <Golf kleur={onder} />
     </section>
   );
 }
@@ -165,7 +217,7 @@ export function FaqLijst({ vragen, schema = true }: { vragen: readonly { vraag: 
   return (
     <>
       {schema && <JsonLd data={faqSchema(vragen)} />}
-      <div className="faq">
+      <div className="faq rv">
         {vragen.map((v, i) => (
           <details key={v.vraag} open={i === 0}>
             <summary>{v.vraag}</summary>
@@ -180,11 +232,8 @@ export function FaqLijst({ vragen, schema = true }: { vragen: readonly { vraag: 
 export function FaqSectie({ kop, vragen }: { kop: ReactNode; vragen: readonly { vraag: string; antwoord: string }[] }) {
   return (
     <section className="sec">
-      <div className="wrap col rv" style={{ gap: 32, maxWidth: 900 }}>
-        <div className="col" style={{ gap: 16 }}>
-          <div className="eb">Veelgestelde vragen</div>
-          <h2 className="h2">{kop}</h2>
-        </div>
+      <div className="wrap">
+        <SectieKop eb="Veelgestelde vragen" titel={kop} midden className="faq-kop" />
         <FaqLijst vragen={vragen} />
       </div>
     </section>
@@ -193,12 +242,11 @@ export function FaqSectie({ kop, vragen }: { kop: ReactNode; vragen: readonly { 
 
 export function Band({ src, alt, eb, titel, lead }: { src: string; alt: string; eb: string; titel: ReactNode; lead: string }) {
   return (
-    <section style={{ padding: "0 0 96px" }}>
-      <div className="wrap rv">
-        <div className="dk band">
-          <Foto src={src} alt={alt} sizes="(max-width: 1248px) 100vw, 1200px" />
-          <div className="band-schaduw" />
-          <div className="col band-tekst">
+    <section className="sec krap">
+      <div className="wrap">
+        <div className="dk band rv">
+          <Foto src={src} alt={alt} sizes="(max-width: 1180px) 100vw, 1180px" />
+          <div className="band-tekst">
             <div className="eb">{eb}</div>
             <h2 className="h2">{titel}</h2>
             <p className="lead">{lead}</p>
@@ -211,7 +259,7 @@ export function Band({ src, alt, eb, titel, lead }: { src: string; alt: string; 
 
 export function Tags({ items }: { items: readonly string[] }) {
   return (
-    <div className="row" style={{ gap: 8 }}>
+    <div className="chips">
       {items.map((t) => <span key={t} className="tagc">{t}</span>)}
     </div>
   );
@@ -220,7 +268,7 @@ export function Tags({ items }: { items: readonly string[] }) {
 // Plaats-pills naar de dienst×plaatspagina van de hoofddienst (spec 5).
 export function PlaatsPills({ dienst = site.hoofddienst, prefix = "" }: { dienst?: string; prefix?: string }) {
   return (
-    <div className="row" style={{ gap: 12 }}>
+    <div className="chips">
       {site.werkgebied
         .filter((p) => (p.diensten as readonly string[]).includes(dienst))
         .map((p) => (
@@ -232,13 +280,62 @@ export function PlaatsPills({ dienst = site.hoofddienst, prefix = "" }: { dienst
 
 export function Werkgebiedblok() {
   return (
-    <section className="sec" style={{ paddingTop: 0 }}>
-      <div className="wrap col rv" style={{ gap: 18 }}>
-        <div className="eb">Werkgebied</div>
-        <h2 className="h2">Waar wij <span className="it">komen.</span></h2>
-        <PlaatsPills />
-        <Link className="tekstlink" href="/werkgebied">Alle plaatsen bekijken</Link>
+    <section className="sec krap">
+      <div className="wrap">
+        <div className="kopblok rv">
+          <div className="eb">Werkgebied</div>
+          <h2 className="h2">Waar wij <Accent>komen.</Accent></h2>
+          <PlaatsPills />
+          <div><Link className="tekstlink" href="/werkgebied">Alle plaatsen bekijken</Link></div>
+        </div>
       </div>
     </section>
+  );
+}
+
+// Uitklappende fotopanelen: desktop hover (flex-grow), mobiel swipen.
+// Zonder JavaScript: hover en focus werken met CSS, alle tekst staat in de HTML.
+export type PaneelItem = { titel: string; tekst: string; label: string; foto: { src: string; alt: string; positie?: string }; href?: string };
+
+export function Panelen({ items, open = 0, kop = "h3" }: { items: readonly PaneelItem[]; open?: number; kop?: "h2" | "h3" }) {
+  const H = kop;
+  return (
+    <ul className="panelen rv">
+      {items.map((it, i) => {
+        const binnen = (
+          <>
+            <Foto src={it.foto.src} alt={it.foto.alt} positie={it.foto.positie} sizes="(max-width: 1020px) 78vw, 640px" />
+            <span className="vt">{it.titel}</span>
+            <div className="pb">
+              <H className="h3">{it.titel}</H>
+              <p>{it.tekst}</p>
+              <i className="label">{it.label}</i>
+            </div>
+          </>
+        );
+        const klasse = i === open ? "paneel open" : "paneel";
+        return (
+          <li key={it.titel} style={{ display: "contents" }}>
+            {it.href ? (
+              <Link href={it.href} className={klasse}>{binnen}</Link>
+            ) : (
+              <div className={klasse} tabIndex={0}>{binnen}</div>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+// Kleine kaart met illustratietegel.
+export function Mini({ ill, titel, children, kop = "h3" }: { ill: IllNaam; titel: ReactNode; children: ReactNode; kop?: "h2" | "h3" }) {
+  const H = kop;
+  return (
+    <div className="mini rv">
+      <div className="tegel"><Ill naam={ill} /></div>
+      <H className="h3">{titel}</H>
+      {children}
+    </div>
   );
 }

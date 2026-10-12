@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Meet- en screenshotscripts van het redesign.
+    "redesign/**",
   ]),
 ]);
 

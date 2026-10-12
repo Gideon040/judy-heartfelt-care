@@ -4,6 +4,7 @@ import Script from "next/script";
 import Kop from "@/components/Kop";
 import Voet from "@/components/Voet";
 import Meten from "@/components/Meten";
+import Reveal from "@/components/Reveal";
 import { localBusiness } from "@/lib/schema";
 import { site } from "@/site.config";
 import "./globals.css";
@@ -13,7 +14,7 @@ const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
 });
-// Alleen cursief: Fraunces is in het ontwerp het accentlettertype.
+// Alleen cursief: Fraunces is in het ontwerp het accentlettertype (500 tot 700).
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <Voet />
         <Meten />
+        <Reveal />
         {ga4Actief && (
           <>
             <Script
