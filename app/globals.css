@@ -57,7 +57,7 @@ h1,h2,h3,h4,p{margin:0}
 .em>svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.36em;overflow:visible;pointer-events:none}
 .em>svg path{fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 1s cubic-bezier(.6,.1,.2,1) .25s}
 .em.wacht>svg path{stroke-dashoffset:1}
-.em.wacht.in>svg path{stroke-dashoffset:0}
+.em.wacht.zichtbaar>svg path{stroke-dashoffset:0}
 /* In de hero schrijft de lijn zonder JavaScript, met CSS. */
 .hero .em>svg path{animation:schrijf 1s cubic-bezier(.6,.1,.2,1) .7s both}
 @keyframes schrijf{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
@@ -165,7 +165,8 @@ h1,h2,h3,h4,p{margin:0}
 .ln:nth-child(2)>span{animation-delay:.1s}.ln:nth-child(3)>span{animation-delay:.2s}
 @keyframes omhoog{from{transform:translateY(105%)}to{transform:none}}
 .fade{animation:fade .8s .35s both}.fade.f2{animation-delay:.5s}.fade.f3{animation-delay:.65s}
-@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+/* Zonder opacity: tekst boven de vouw telt direct mee voor LCP. */
+@keyframes fade{from{transform:translateY(12px)}to{transform:none}}
 .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 .crumb{display:flex;flex-wrap:wrap;gap:8px;font-size:13.5px;color:#BDB0C2;margin-bottom:18px}
 .crumb a{color:#BDB0C2;text-decoration:none}.crumb a:hover{color:#fff}
@@ -286,7 +287,7 @@ h1,h2,h3,h4,p{margin:0}
 .portret{position:relative;margin:0;padding:22px}
 .portret-foto{position:relative;aspect-ratio:4/5.2;border-radius:999px 999px 28px 28px;overflow:hidden;background:var(--peach-2)}
 .portret-foto img{transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
-.portret.in .portret-foto img{transform:scale(1.04)}
+.portret.zichtbaar .portret-foto img{transform:scale(1.04)}
 .portret figcaption{position:absolute;left:-6px;bottom:44px;background:#fff;border-radius:18px;padding:13px 18px;box-shadow:0 18px 40px -22px rgba(42,28,44,.5);font-size:13.5px;color:var(--muted);line-height:1.35;max-width:80%}
 .portret figcaption b{display:block;color:var(--ink);font-size:16px}
 .functie{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--acc-tekst)}
@@ -586,7 +587,7 @@ h1,h2,h3,h4,p{margin:0}
 /* ---------- 8. Reveal en reduced motion ---------- */
 /* .rv krijgt pas met JavaScript .wacht, en alleen onder de vouw. */
 .rv.wacht{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
-.rv.wacht.in{opacity:1;transform:none}
+.rv.wacht.zichtbaar{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .rv.wacht{opacity:1;transform:none}

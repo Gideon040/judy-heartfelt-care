@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 // De ene reveal-hook van de site (IntersectionObserver, geen libraries).
 // - Alles staat zonder JavaScript gewoon in beeld.
 // - Pas hier krijgen .rv-blokken en accentlijnen ONDER de vouw de klasse
-//   "wacht", en zodra ze in beeld komen "in".
+//   "wacht", en zodra ze in beeld komen "zichtbaar".
 // - De gestippelde hartlijn tussen de stappen tekent mee met scrollen en
 //   er reist een hartje over.
 // - Bij prefers-reduced-motion gebeurt er niets: alles staat direct goed.
@@ -19,7 +19,7 @@ export function useReveal() {
       (items) => {
         for (const it of items) {
           if (!it.isIntersecting) continue;
-          it.target.classList.add("in");
+          it.target.classList.add("zichtbaar");
           io.unobserve(it.target);
         }
       },
@@ -29,7 +29,7 @@ export function useReveal() {
     document.querySelectorAll<HTMLElement>("main .rv, main .em, main .portret, footer .rv").forEach((el, i) => {
       if (el.closest(".hero")) return;
       if (el.getBoundingClientRect().top < vouw) {
-        el.classList.add("in");
+        el.classList.add("zichtbaar");
         return;
       }
       el.classList.add("wacht");
@@ -47,6 +47,7 @@ export function useReveal() {
       if (!svg || !lijn || !masker || !hart) return;
       cancelAnimationFrame(rAF);
       rAF = requestAnimationFrame(() => {
+        if (!svg.getBoundingClientRect().width) return;
         const blok = svg.parentElement!.getBoundingClientRect();
         const t = Math.max(0, Math.min(1, (window.innerHeight * 0.85 - blok.top) / (blok.height + window.innerHeight * 0.2)));
         masker.style.strokeDashoffset = String(-t);
@@ -56,6 +57,7 @@ export function useReveal() {
         // tekenen we in schermpixels zodat het niet vervormt.
         const vb = svg.viewBox.baseVal;
         const r = svg.getBoundingClientRect();
+        if (!r.width || !r.height) return; // verborgen (mobiel)
         hart.setAttribute("transform", `translate(${p.x} ${p.y}) scale(${vb.width / r.width} ${vb.height / r.height})`);
         hart.style.opacity = t > 0.02 && t < 0.995 ? "1" : "0";
       });
