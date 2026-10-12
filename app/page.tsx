@@ -3,10 +3,14 @@ import Link from "next/link";
 import { site } from "@/site.config";
 import { haalArtikelen, artikelDatum } from "@/lib/kennisbank";
 import { inhoud } from "./zorg/inhoud";
-import { CtaBlok, Foto, Stappen, Tags, PlaatsPills, ZorgvraagKnop } from "@/components/Blokken";
-import { Pijl, Vink, VinkKlein } from "@/components/Iconen";
-import WerkgebiedKaart from "@/components/WerkgebiedKaart";
+import { CtaBlok, Foto, Panelen, SectieKop, Stappen, Tags, ZorgvraagKnop } from "@/components/Blokken";
+import Accent from "@/components/Accent";
+import Golf from "@/components/Golf";
 import Portret from "@/components/Portret";
+import { RegioKiezer } from "@/components/WerkgebiedKaart";
+import { FOTO } from "@/components/fotos";
+import { Pijl } from "@/components/Iconen";
+import { IllAgenda, IllCultuur, IllHuis, IllPapier } from "@/components/Illustraties";
 
 export const metadata: Metadata = {
   alternates: { canonical: site.url },
@@ -16,10 +20,10 @@ export const metadata: Metadata = {
 export const revalidate = 1800;
 
 const TAALKLEUR: Record<string, [string, string]> = {
-  Nederlands: ["NL", "#D9653B"],
+  Nederlands: ["NL", "#B24C1E"],
   Engels: ["EN", "#8E5A7A"],
-  Papiaments: ["PAP", "#A8741F"],
-  Spaans: ["ES", "#5B7A8E"],
+  Papiaments: ["PAP", "#8A5C12"],
+  Spaans: ["ES", "#4E6B7E"],
 };
 
 const ROUTES = [
@@ -34,209 +38,199 @@ function lijstZin(items: readonly string[], klein = true) {
   return l.length > 1 ? `${l.slice(0, -1).join(", ")} en ${l[l.length - 1]}` : l[0];
 }
 
+function Talen() {
+  return (
+    <span className="talen">
+      {site.gezicht.talen.map((t) => (
+        <i key={t} style={{ background: TAALKLEUR[t]?.[1] }}>{TAALKLEUR[t]?.[0]}</i>
+      ))}
+    </span>
+  );
+}
+
 export default async function Home() {
   const artikelen = await haalArtikelen();
   const g = site.gezicht;
-  const ribA = [...g.ervaringMet.slice(0, 5), "Ambulante begeleiding", "Nachtzorg", "24-uurszorg", site.aankondiging.titel];
-  const ribB = ["Geen wachtlijst", "Ook in het weekend", "Vanaf 1 uur zorg", "Kennismaking binnen 48 uur", ...g.talen];
+  const open = site.diensten.findIndex((d) => d.slug === site.hoofddienst);
 
   return (
     <main>
-      {/* [2] Hero */}
-      <section className="dk hero-home">
+      {/* Hero: geen pill boven de H1, geen zwevende kaartjes op de foto */}
+      <section className="hero">
         <div className="wrap hero-grid">
-          <div className="col" style={{ gap: 22, paddingBottom: 56 }}>
-            {site.directPlek && <div className="eb rise">Direct plek voor nieuwe cliënten</div>}
-            <h1 className="h1 rise e2">
-              Thuiszorg met een vast gezicht <span className="it">in {site.plaats}</span> en omstreken
+          <div>
+            <h1 className="h1">
+              <span className="ln"><span>Thuiszorg met een vast gezicht </span></span>
+              <span className="ln"><span><Accent>in {site.plaats}</Accent> en omstreken</span></span>
             </h1>
-            <p className="lead rise e3">
+            <p className="lead fade">
               {lijstZin(["Persoonlijke verzorging", "begeleiding", "nachtzorg", "palliatieve zorg"])} bij u thuis in {site.plaats} en omstreken. Van één uur per week tot zorg rond de klok, zeven dagen per week.
             </p>
-            <div className="row rise e4" style={{ marginTop: 6 }}>
+            <div className="cta-row fade f2">
               <ZorgvraagKnop />
               <a className="btn2" href="#diensten">Bekijk onze zorg</a>
             </div>
-            <div className="col rise e4" style={{ gap: 9, marginTop: 4 }}>
-              {["Kennismaking bij u thuis, meestal binnen 48 uur", "Via pgb, Wmo, Wlz of particulier", "Geen wachtlijst"].map((t) => (
-                <div key={t} className="li"><Vink licht /><span>{t}</span></div>
-              ))}
+            <div className="hero-feiten fade f3">
+              <span><b>{g.jarenErvaring} jaar</b> ervaring in de zorg</span>
+              <span><b>48 uur</b> tot kennismaking</span>
+              <span><b>Vast</b> gezicht en aanspreekpunt</span>
             </div>
-            <div className="talen rise e4">
-              <span>
-                {g.talen.map((t) => (
-                  <i key={t} style={{ background: TAALKLEUR[t]?.[1] }}>{TAALKLEUR[t]?.[0]}</i>
-                ))}
-              </span>
-              Zorg in het {lijstZin(g.talen, false)}
+            <div className="wie fade f3">
+              {g.foto && <span className="wie-foto"><Foto src={g.foto} alt="" positie="50% 18%" sizes="52px" /></span>}
+              <div><b>{g.naam}</b><span>{g.functie}, uw vaste aanspreekpunt</span></div>
             </div>
           </div>
-          <div className="hv">
-            <div className="gl" />
-            <div className="pb">
-              <Foto src="/afbeeldingen/judy-00-hero-keukentafel.webp" alt="Zorgverlener en oudere vrouw lachen samen aan de keukentafel" positie="62% 45%" sizes="390px" priority />
+          <div className="boog">
+            <div className="boog-foto">
+              <Foto src={FOTO.keukentafel.src} alt={FOTO.keukentafel.alt} positie="62% 45%" sizes="(max-width: 1020px) 90vw, 440px" preload />
             </div>
-            <div className="stat float" style={{ top: 34, right: 0 }}><b>{g.jarenErvaring} jaar</b><span>ervaring in de zorg</span></div>
-            <div className="stat float" style={{ bottom: 46, right: 8 }}><b>48 uur</b><span>tot kennismaking</span></div>
-            <div className="stat float f2" style={{ top: 60, left: 0 }}><b>Vast</b><span>gezicht en aanspreekpunt</span></div>
+            <svg className="hartlijn" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <path pathLength={1} d="M30 470 C10 300 20 150 90 70 C150 5 250 5 310 70 C380 150 392 300 372 470 M372 470 C372 440 350 420 330 432 C312 410 284 420 290 446 C296 470 330 488 342 500" />
+            </svg>
           </div>
         </div>
+        <Golf kleur="cream" vorm="hero" className="golf-hero" />
       </section>
 
-      {/* [3] Trustbalk */}
-      <section className="trust">
+      {/* Beloftebalk: witte kaart half over de golf */}
+      <section className="belofte">
         <div className="wrap">
-          {[
-            [`KvK ${site.kvk}`, "ingeschreven"],
-            [`AGB ${site.agb}`, "zorgaanbieder"],
-            ...(site.vog ? [["VOG aanwezig", "actueel"]] : []),
-            ...(site.wtza ? [["Wtza", site.wtza]] : []),
-            ["Klachtenregeling", site.geschilleninstantie || "volgens de Wkkgz"],
-            ["Geen wachtlijst", "directe start"],
-          ].map(([b, s]) => (
-            <div key={b} className="trust-item">
-              <span><VinkKlein /></span>
-              <span><b>{b}</b><small>{s}</small></span>
-            </div>
-          ))}
+          <div className="belofte-rij rv">
+            <div><IllHuis /><span><b>Binnen 48 uur</b>{" "}Kennismaking bij u thuis, meestal binnen 48 uur</span></div>
+            <div><IllPapier /><span><b>Pgb, Wmo, Wlz</b>{" "}Via pgb, Wmo, Wlz of particulier</span></div>
+            <div><Talen /><span><b>{g.talen.length === 4 ? "Vier" : g.talen.length} talen</b>{" "}Zorg in het {lijstZin(g.talen, false)}</span></div>
+            <div><IllAgenda /><span><b>Geen wachtlijst</b>{" "}{site.directPlek ? "Direct plek voor nieuwe cliënten" : "Vanaf 1 uur zorg"}</span></div>
+          </div>
         </div>
       </section>
 
-      {/* [4] Diensten */}
-      <section className="sec" id="diensten" style={{ paddingBottom: 40 }}>
-        <div className="wrap col" style={{ gap: 40 }}>
-          <div className="col rv kopblok midden">
-            <div className="eb">Onze zorg</div>
-            <h2 className="h2">Thuiszorg op maat, <span className="it">7 dagen per week</span></h2>
-            <p className="lead">Alle zorg is ook in het weekend beschikbaar. Na een kosteloze kennismaking leggen wij samen vast wat er nodig is.</p>
-          </div>
-          <div className="svc rv">
-            {site.diensten.map((d) => {
+      {/* Zorgvormen als uitklappende fotopanelen */}
+      <section className="sec" id="diensten" style={{ paddingBottom: "calc(clamp(72px,9vw,112px) + var(--golf))" }}>
+        <div className="wrap">
+          <SectieKop
+            eb="Onze zorg"
+            titel={<>Thuiszorg op maat, <Accent>7 dagen per week</Accent></>}
+            tekst="Alle zorg is ook in het weekend beschikbaar. Na een kosteloze kennismaking leggen wij samen vast wat er nodig is."
+            midden
+          />
+          <Panelen
+            open={open}
+            items={site.diensten.map((d) => {
               const t = inhoud[d.slug];
-              return (
-                <Link key={d.slug} href={`/zorg/${d.slug}`} className={d.slug === site.hoofddienst ? "open" : undefined}>
-                  <Foto src={t.afbeelding} alt="" positie={t.positie} sizes="(max-width: 800px) 100vw, 40vw" />
-                  <span className="vl">{d.naam}</span>
-                  <span className="inf"><b>{d.naam}</b><span>{t.kaart}</span><i>ook in het weekend</i></span>
-                </Link>
-              );
+              return { titel: d.naam, tekst: t.kaart, label: "ook in het weekend", href: `/zorg/${d.slug}`, foto: { src: t.afbeelding, alt: t.alt, positie: t.positie } };
             })}
-          </div>
-          <div className="card rv" style={{ padding: "26px 30px", borderRadius: 22, background: "#FFF5EC", borderColor: "#E3B49A", display: "flex", flexWrap: "wrap", gap: 18, alignItems: "center", justifyContent: "space-between" }}>
-            <div className="col" style={{ gap: 8, maxWidth: "68ch" }}>
-              <span className="abbr">Binnenkort</span>
-              <h3 className="h3" style={{ fontSize: 24 }}>{site.aankondiging.titel}</h3>
-              <p className="sm">{site.aankondiging.tekst}</p>
+          />
+          <p className="ook rv">
+            Ook: <span>24-uurszorg</span> &middot; <Link href="/zorg/begeleiding">Ambulante begeleiding</Link> &middot; <Link href="/zorgvraag">{site.aankondiging.titel}</Link> <span className="binnenkort">binnenkort</span>
+          </p>
+          <div className="aankondiging rv">
+            <div className="aankondiging-tekst">
+              <span className="tegel"><IllCultuur /></span>
+              <div className="col" style={{ gap: 6 }}>
+                <span className="abbr" style={{ background: "#fff" }}>Binnenkort</span>
+                <h3 className="h3" style={{ fontSize: 22 }}>{site.aankondiging.titel}</h3>
+                <p className="sm" style={{ color: "var(--text)" }}>{site.aankondiging.tekst}</p>
+              </div>
             </div>
             <Link className="btn2" href="/zorgvraag">Interesse melden <Pijl /></Link>
           </div>
         </div>
       </section>
 
-      <div className="ribs" aria-hidden="true">
-        <div className="rib ra"><div className="mq">{[...ribA, ...ribA, ...ribA, ...ribA].map((t, i) => <span key={i}>{t}</span>)}</div></div>
-        <div className="rib rb"><div className="mq">{[...ribB, ...ribB, ...ribB, ...ribB].map((t, i) => <span key={i}>{t}</span>)}</div></div>
-      </div>
-
-      {/* [5] Zo werkt het */}
+      {/* Zo werkt het: deurfoto met vier punten, drie stappen */}
       <Stappen
-        midden
-        kop={<>Vandaag een zorgvraag, <span className="it">morgen aan tafel</span></>}
+        kop={<>Vandaag een zorgvraag, <Accent>morgen aan tafel</Accent></>}
         teksten={[
           "Online in twee minuten of telefonisch. U hoort dezelfde werkdag van ons.",
           "Kosteloos bij u thuis. Wij luisteren, kijken mee en leggen de afspraken vast.",
           "Dezelfde zorgverlener, elke keer. Wij blijven uw aanspreekpunt.",
         ]}
-      >
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(260px,100%),1fr))", gap: 34, alignItems: "center" }}>
-          <div className="col rv" style={{ gap: 32 }}>
-            <div className="feat"><b>Vaste zorgverlener</b><p className="sm">Geen wisselende gezichten aan de deur.</p></div>
-            <div className="feat"><b>Ook in het weekend</b><p className="sm">Zorg stopt niet op vrijdag. Wij ook niet.</p></div>
+        usp={
+          <div className="usp">
+            <div className="usp-kol rv">
+              <div><b>Vaste zorgverlener</b><p>Geen wisselende gezichten aan de deur.</p></div>
+              <div><b>Ook in het weekend</b><p>Zorg stopt niet op vrijdag. Wij ook niet.</p></div>
+            </div>
+            <div className="usp-foto rv">
+              <Foto src={FOTO.voordeur.src} alt={FOTO.voordeur.alt} positie="45% 40%" sizes="(max-width: 1020px) 90vw, 300px" />
+            </div>
+            <div className="usp-kol rv">
+              <div><b>Samen met IG en verpleegkundigen</b><p>Voor verpleegtechnische zorg werken wij samen met bevoegde collega&apos;s.</p></div>
+              <div><b>Geen wachtlijst</b><p>Wij kunnen meestal binnen enkele dagen starten.</p></div>
+            </div>
           </div>
-          <div className="pb rv" style={{ height: 340, borderRadius: 24, border: "6px solid rgba(255,255,255,.08)" }}>
-            <Foto src="/afbeeldingen/judy-07-voordeur.webp" alt="Zorgverlener en dochter bij de voordeur van een oudere vrouw" positie="50% 36%" sizes="(max-width: 900px) 100vw, 400px" />
-          </div>
-          <div className="col rv" style={{ gap: 32 }}>
-            <div className="feat"><b>Samen met IG en verpleegkundigen</b><p className="sm">Voor verpleegtechnische zorg werken wij samen met bevoegde collega&apos;s.</p></div>
-            <div className="feat"><b>Geen wachtlijst</b><p className="sm">Wij kunnen meestal binnen enkele dagen starten.</p></div>
-          </div>
-        </div>
-      </Stappen>
+        }
+      />
 
-      {/* [6] Gezicht */}
-      <section className="sec">
-        <div className="wrap col" style={{ gap: 40 }}>
-          <div className="col rv kopblok midden">
+      {/* Judy-blok */}
+      <section className="sec met-golf">
+        <div className="wrap judy">
+          <Portret onderschrift={false} />
+          <div className="rv">
             <div className="eb">Het gezicht achter {site.naam}</div>
-            <h2 className="h2">Maak kennis met <span className="it">{g.voornaam}</span></h2>
-          </div>
-          <div className="card rv" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(380px,100%),1fr))", overflow: "hidden", borderRadius: 28, boxShadow: "0 20px 44px -22px rgba(60,30,40,.3)" }}>
-            <Portret minHoogte={420} />
-            <div className="col" style={{ gap: 14, padding: "clamp(26px,4vw,44px)" }}>
-              <div style={{ color: "#C9572F", fontWeight: 700, fontSize: 14 }}>{g.functie}</div>
-              <h3 className="h3" style={{ fontSize: 30 }}>{g.naam}</h3>
-              <p className="sm" style={{ fontSize: 16.5 }}>&ldquo;{g.citaat}&rdquo;</p>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 12 }}>
-                <div className="mini-stat"><b>{g.jarenErvaring} jaar</b><span className="sm">ervaring</span></div>
-                <div className="mini-stat"><b>{g.opleiding}</b><span className="sm">{g.opleidingStatus}</span></div>
-                <div className="mini-stat"><b>{g.talen.length} talen</b><span className="sm">aan het bed</span></div>
-              </div>
-              <Tags items={g.ervaringMet.slice(0, 5)} />
-              <div className="row" style={{ marginTop: 6 }}><Link className="btn" href="/over">Meer over ons <Pijl /></Link></div>
+            <h2 className="h2" style={{ marginTop: 16 }}>Maak kennis met <Accent>{g.voornaam}</Accent></h2>
+            <p className="quote">&ldquo;{g.citaat}&rdquo;</p>
+            <div style={{ marginTop: 16 }}>
+              <h3 className="h3">{g.naam}</h3>
+              <div className="functie" style={{ marginTop: 4 }}>{g.functie}</div>
+            </div>
+            <div className="feiten">
+              <div><b>{g.jarenErvaring} jaar</b><span>ervaring</span></div>
+              <div><b>{g.talen.length} talen</b><span>aan het bed</span></div>
+              <div><b>{g.opleiding}</b><span>{g.opleidingStatus}</span></div>
+            </div>
+            <div style={{ marginTop: 22 }}><Tags items={g.ervaringMet.slice(0, 5)} /></div>
+            <div className="row" style={{ marginTop: 28 }}><Link className="btn2" href="/over">Meer over ons <Pijl /></Link></div>
+            <div className="regs">
+              <span><b>KvK {site.kvk}</b>{" "}ingeschreven</span>
+              {site.agbTonen && <span><b>AGB {site.agb}</b>{" "}zorgaanbieder</span>}
+              {site.vog && <span><b>VOG aanwezig</b>{" "}actueel</span>}
+              {site.wtza && <span><b>Wtza</b>{" "}{site.wtza}</span>}
+              <span><b>Klachtenregeling</b>{" "}{site.geschilleninstantie || "volgens de Wkkgz"}</span>
+              <span><b>Geen wachtlijst</b>{" "}directe start</span>
             </div>
           </div>
         </div>
+        <Golf kleur="peach" />
       </section>
 
-      {/* [7] Vergoeding */}
-      <section className="sec" style={{ paddingTop: 0 }}>
-        <div className="wrap col" style={{ gap: 36 }}>
-          <div className="kopbalk">
-            <div className="col rv kopblok" style={{ maxWidth: 700 }}>
-              <div className="eb">Vergoeding</div>
-              <h2 className="h2">Vier manieren om de zorg <span className="it">te betalen</span></h2>
-              <p className="lead">Wij helpen kosteloos met de aanvraag, de zorgovereenkomst en de urenverantwoording.</p>
-            </div>
-            <Link className="btn2 rv" href="/tarieven-en-vergoeding">Tarieven en vergoeding <Pijl /></Link>
-          </div>
-          <div className="g4" style={{ gap: 20 }}>
+      {/* Vergoeding */}
+      <section className="sec peach met-golf">
+        <div className="wrap">
+          <SectieKop
+            eb="Vergoeding"
+            titel={<>Vier manieren om de zorg <Accent>te betalen</Accent></>}
+            tekst={<><p>Wij helpen kosteloos met de aanvraag, de zorgovereenkomst en de urenverantwoording.</p><p style={{ marginTop: 10 }}><Link className="tekstlink" href="/tarieven-en-vergoeding">Tarieven en vergoeding</Link></p></>}
+          />
+          <div className="raster r4">
             {ROUTES.map((r) => (
-              <div key={r.afk} className="card col rv lift route">
+              <div key={r.afk} className={r.afk === "Particulier" ? "kaart donker label-snel rv" : "kaart rv"}>
                 <span className="abbr">{r.afk}</span>
-                <h3 className="h3" style={{ marginTop: 4 }}>{r.titel}</h3>
-                <p className="sm">{r.tekst}</p>
+                <h3 className="h3" style={{ marginTop: 16, fontSize: 18 }}>{r.titel}</h3>
+                <p className="sm" style={{ marginTop: 8 }}>{r.tekst}</p>
               </div>
             ))}
           </div>
         </div>
+        <Golf kleur="cream" />
       </section>
 
-      {/* [8] Werkgebied */}
-      <section className="sec" style={{ background: "#FBEFE4" }}>
-        <div className="wrap" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(440px,100%),1fr))", gap: 56, alignItems: "center" }}>
-          <div className="col rv" style={{ gap: 18 }}>
-            <div className="eb">Werkgebied</div>
-            <h2 className="h2">Bij u in de buurt, in <span className="it">{site.regio}</span></h2>
-            <p className="lead">Kies uw plaats om te zien wat wij daar doen.</p>
-            <PlaatsPills />
-            <Link className="tekstlink" href="/werkgebied">Alle plaatsen bekijken</Link>
-          </div>
-          <div className="card rv" style={{ padding: 26, borderRadius: 26 }}><WerkgebiedKaart /></div>
+      {/* Regio's */}
+      <section className="sec">
+        <div className="wrap">
+          <RegioKiezer kop={<>Bij u in de buurt, in <Accent>{site.regio}</Accent></>} lead="Kies uw plaats om te zien wat wij daar doen." />
         </div>
       </section>
 
-      {/* [9] Kennisbank: pas tonen bij minimaal 3 artikelen */}
+      {/* Kennisbank: pas tonen bij minimaal 3 artikelen */}
       {artikelen.length >= 3 && (
-        <section className="sec">
-          <div className="wrap col" style={{ gap: 36 }}>
-            <div className="kopbalk">
-              <div className="col rv kopblok"><div className="eb">Kennisbank</div><h2 className="h2">Eerst even <span className="it">lezen?</span></h2></div>
-              <Link className="btn2 rv" href="/kennisbank">Alle artikelen <Pijl /></Link>
-            </div>
-            <div className="g3">
+        <section className="sec krap">
+          <div className="wrap">
+            <SectieKop eb="Kennisbank" titel={<>Eerst even <Accent>lezen?</Accent></>} tekst={<Link className="tekstlink" href="/kennisbank">Alle artikelen</Link>} />
+            <div className="raster r3">
               {artikelen.slice(0, 3).map((a) => (
-                <Link key={a.slug} className="card col rv lift" href={`/kennisbank/${a.slug}`} style={{ gap: 10, padding: 26, borderRadius: 22, textDecoration: "none", color: "#2A1F2D" }}>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: "#C9572F", letterSpacing: ".08em", textTransform: "uppercase" }}>{artikelDatum(a.gepubliceerd_op)}</span>
+                <Link key={a.slug} className="kaart rv col" href={`/kennisbank/${a.slug}`} style={{ gap: 10, textDecoration: "none", color: "var(--ink)" }}>
+                  <span className="functie">{artikelDatum(a.gepubliceerd_op)}</span>
                   <span className="h3">{a.titel}</span>
                   {a.samenvatting && <span className="sm">{a.samenvatting}</span>}
                 </Link>
@@ -246,8 +240,7 @@ export default async function Home() {
         </section>
       )}
 
-      {/* [10] CTA */}
-      <CtaBlok id="aanvraag" label="Vandaag een zorgvraag? Morgen aan tafel." titel={<>Vertel ons wat er nodig is, <span className="it">wij regelen de rest</span></>} />
+      <CtaBlok id="aanvraag" label="Vandaag een zorgvraag? Morgen aan tafel." titel={<>Vertel ons wat er nodig is, <Accent>wij regelen de rest</Accent></>} foto="tuinbankje" ill="bel" />
     </main>
   );
 }
