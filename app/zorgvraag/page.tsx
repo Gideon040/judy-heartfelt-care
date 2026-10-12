@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { site } from "@/site.config";
 import { Kruimelpad } from "@/components/Blokken";
-import { Vink } from "@/components/Iconen";
+import Accent from "@/components/Accent";
 import ZorgvraagWizard from "@/components/ZorgvraagWizard";
 
 export const metadata: Metadata = {
@@ -14,23 +14,21 @@ export const metadata: Metadata = {
 export default function Zorgvraag() {
   return (
     <main>
-      <section style={{ padding: "56px 0 104px" }}>
-        <div className="wrap" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(360px,100%),1fr))", gap: 56, alignItems: "start" }}>
+      <section className="sec" style={{ paddingTop: "clamp(40px,5vw,64px)" }}>
+        <div className="wrap split">
           <div className="col" style={{ gap: 22 }}>
             <Kruimelpad items={[{ naam: "Zorgvraag stellen", pad: "/zorgvraag" }]} licht />
-            <div className="eb rise">Zorgvraag stellen</div>
-            <h1 className="h1 rise e2" style={{ fontSize: "clamp(38px,4.4vw,60px)" }}>Vertel ons wat <span className="it">er nodig is.</span></h1>
-            <p className="lead rise e3">Vijf korte stappen. U hoeft geen medische gegevens in te vullen. Wij bellen u dezelfde werkdag, {site.bereikbaarKort}.</p>
-            <div className="col rise e4" style={{ gap: 12 }}>
+            <div className="eb">Zorgvraag stellen</div>
+            <h1 className="h1" style={{ fontSize: "clamp(36px,4.4vw,56px)" }}>Vertel ons wat <Accent>er nodig is.</Accent></h1>
+            <p className="lead">Vijf korte stappen. U hoeft geen medische gegevens in te vullen. Wij bellen u dezelfde werkdag, {site.bereikbaarKort}.</p>
+            <ul className="checks">
               {["Kennismaking meestal binnen 48 uur", "Kosteloos en vrijblijvend", `Uw gegevens gaan alleen naar ${site.gezicht.voornaam}`].map((t) => (
-                <div key={t} className="li"><Vink /><span>{t}</span></div>
+                <li key={t}>{t}</li>
               ))}
-            </div>
-            <div className="card hs" style={{ padding: "22px 24px", display: "flex", alignItems: "center", gap: 16, maxWidth: 420 }}>
-              <div>
-                <div style={{ fontWeight: 700 }}>Liever bellen?</div>
-                <a href={`tel:${site.telefoon}`} style={{ fontWeight: 800, letterSpacing: "-.02em", fontSize: 26, textDecoration: "none" }}>{site.telefoonWeergave}</a>
-              </div>
+            </ul>
+            <div className="zij-bel">
+              <div style={{ fontWeight: 700, color: "var(--ink)" }}>Liever bellen?</div>
+              <a href={`tel:${site.telefoon}`}>{site.telefoonWeergave}</a>
             </div>
           </div>
           <Suspense>

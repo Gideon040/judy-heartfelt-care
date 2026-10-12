@@ -1,3 +1,4 @@
+import Accent from "@/components/Accent";
 import type { Metadata } from "next";
 import { site } from "@/site.config";
 import { JuriBlok, JuriPagina } from "@/components/Juridisch";
@@ -13,7 +14,7 @@ export default function Voorwaarden() {
     <JuriPagina
       naam="Algemene voorwaarden"
       pad="/algemene-voorwaarden"
-      titel={<>De afspraken die bij onze zorg <span className="it">horen</span></>}
+      titel={<>De afspraken die bij onze zorg <Accent>horen</Accent></>}
       lead="Kort en leesbaar. Wat hier staat, geldt tenzij wij samen schriftelijk iets anders afspreken."
     >
       <JuriBlok kop="Start van de zorg">

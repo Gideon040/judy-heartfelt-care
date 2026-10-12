@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { site } from "@/site.config";
 import { faqSchema } from "@/lib/schema";
 import { Band, CtaBlok, FaqLijst, HeroSub, JsonLd } from "@/components/Blokken";
+import Accent from "@/components/Accent";
 
 export const metadata: Metadata = {
   title: `Veelgestelde vragen | ${site.naam}`,
@@ -51,16 +52,16 @@ export default function Faq() {
       <HeroSub
         kruimels={[{ naam: "Veelgestelde vragen", pad: "/veelgestelde-vragen" }]}
         eb="Veelgestelde vragen"
-        titel={<>Wat mensen ons <span className="it">het vaakst vragen.</span></>}
+        titel={<>Wat mensen ons <Accent>het vaakst vragen.</Accent></>}
         lead={`Staat uw vraag er niet bij? Bel ons ${site.bereikbaarKort} op ${site.telefoonWeergave}.`}
       />
 
-      <section style={{ padding: "24px 0 72px" }}>
+      <section className="sec" style={{ paddingTop: 24 }}>
         <div className="wrap">
-          {GROEPEN.map((g, i) => (
-            <div key={g.thema} className="rv faq-groep" style={i === 0 ? { borderTop: 0 } : undefined}>
-              <h2 className="h2">{g.thema}</h2>
-              <div className="sp2"><FaqLijst vragen={g.vragen} schema={false} /></div>
+          {GROEPEN.map((g) => (
+            <div key={g.thema} className="faq-groep">
+              <h2 className="h2 rv" style={{ fontSize: "clamp(26px,2.8vw,34px)" }}>{g.thema}</h2>
+              <FaqLijst vragen={g.vragen} schema={false} />
             </div>
           ))}
         </div>
@@ -70,11 +71,11 @@ export default function Faq() {
         src="/afbeeldingen/judy-07-voordeur.webp"
         alt="Zorgverlener en dochter bij de voordeur van een oudere vrouw"
         eb="Tijd voor uw verhaal"
-        titel={<>Geen vraag is <span className="it">te klein</span></>}
+        titel={<>Geen vraag is <Accent>te klein</Accent></>}
         lead="Bij de kennismaking nemen wij de tijd. U hoeft niets voor te bereiden."
       />
 
-      <CtaBlok label="Vraag niet beantwoord?" titel={<>Stel hem gerust <span className="it">aan {site.gezicht.voornaam}.</span></>} />
+      <CtaBlok label="Vraag niet beantwoord?" titel={<>Stel hem gerust <Accent>{`aan ${site.gezicht.voornaam}.`}</Accent></>} foto="raam" ill="bel" />
     </main>
   );
 }

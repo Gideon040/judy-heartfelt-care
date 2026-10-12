@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { site } from "@/site.config";
 import { CtaBlok, HeroSub } from "@/components/Blokken";
 import { Pijl } from "@/components/Iconen";
+import Accent from "@/components/Accent";
 
 // Verborgen tot er minimaal 3 echte reviews in site.config.ts staan
 // (structuurspec regel 6.5). Tot dan geeft deze pagina een 404.
@@ -24,21 +25,21 @@ export default function Reviews() {
       <HeroSub
         kruimels={[{ naam: "Ervaringen", pad: "/reviews" }]}
         eb="Ervaringen"
-        titel={<>Wat cliënten en families <span className="it">over ons zeggen.</span></>}
+        titel={<>Wat cliënten en families <Accent>over ons zeggen.</Accent></>}
         lead="Alleen echte ervaringen, met voornaam en datum."
         foto={{ src: "/afbeeldingen/tijdelijk-09-tuinbankje.jpg", alt: "Zorgverlener en cliënt lachen samen" }}
       />
       <section className="sec">
         <div className="wrap col" style={{ gap: 40 }}>
-          <div className="g3">
+          <div className="raster r3">
             {site.reviews.map((r) => (
-              <figure key={r.tekst} className="card rv" style={{ margin: 0, padding: 32, borderRadius: "999px 999px 28px 28px", background: "#FFF5EC", display: "flex", flexDirection: "column", gap: 16, alignItems: "center", textAlign: "center", minHeight: 420, justifyContent: "flex-end" }}>
-                <blockquote style={{ margin: 0, fontFamily: "var(--font-fraunces),Georgia,serif", fontStyle: "italic", fontWeight: 600, fontSize: 24, lineHeight: 1.3, color: "#C9572F" }}>&ldquo;{r.tekst}&rdquo;</blockquote>
+              <figure key={r.tekst} className="review rv">
+                <blockquote>&ldquo;{r.tekst}&rdquo;</blockquote>
                 <figcaption className="sm" style={{ fontSize: 14.5 }}>{r.voornaam} &middot; {r.plaats} &middot; {r.datum}</figcaption>
               </figure>
             ))}
           </div>
-          <div className="card rv" style={{ padding: "32px 36px", borderRadius: 28, display: "flex", flexWrap: "wrap", gap: 20, alignItems: "center", justifyContent: "space-between" }}>
+          <div className="blok-wit rv" style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "center", justifyContent: "space-between" }}>
             <div className="col" style={{ gap: 6, maxWidth: "60ch" }}>
               <h2 className="h3">Ontvangt u zorg van ons?</h2>
               <p className="sm">Vertel hoe u het ervaart. Ook wat beter kan horen wij graag.</p>
@@ -47,7 +48,7 @@ export default function Reviews() {
           </div>
         </div>
       </section>
-      <CtaBlok label="Zelf ervaren?" titel={<>Begin met een <span className="it">kennismaking.</span></>} />
+      <CtaBlok label="Zelf ervaren?" titel={<>Begin met een <Accent>kennismaking.</Accent></>} />
     </main>
   );
 }

@@ -613,3 +613,4 @@ h1,h2,h3,h4,p{margin:0}
   .hero-feiten{flex-direction:column;gap:8px}
 }
 .tekstlink svg{vertical-align:-3px;margin-left:4px}
+.rise{animation:fade .5s both}

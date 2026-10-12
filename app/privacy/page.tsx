@@ -1,3 +1,4 @@
+import Accent from "@/components/Accent";
 import type { Metadata } from "next";
 import { site } from "@/site.config";
 import { JuriBlok, JuriPagina } from "@/components/Juridisch";
@@ -13,7 +14,7 @@ export default function Privacy() {
     <JuriPagina
       naam="Privacy"
       pad="/privacy"
-      titel={<>Hoe wij met uw <span className="it">gegevens</span> omgaan</>}
+      titel={<>Hoe wij met uw <Accent>gegevens</Accent> omgaan</>}
       lead="Wij verwerken alleen wat nodig is om goede zorg te leveren, en delen niets zonder dat u het weet."
     >
       <JuriBlok kop="Wie verwerkt uw gegevens">

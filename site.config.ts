@@ -81,7 +81,7 @@ const werkgebied = [
       "Het dichtstbijzijnde ziekenhuis is het Maastricht UMC+. In de kleinere kernen woont men vaak al een leven lang in hetzelfde huis, en daar wil men ook blijven.",
     dichtbij: ["maastricht", "valkenburg-aan-de-geul", "beek"],
     eigenZin: "",
-    kaart: { x: 250, y: 314 },
+    kaart: { x: 246, y: 306 },
     diensten: alleDiensten,
   },
   {
@@ -95,7 +95,7 @@ const werkgebied = [
       "Het Heuvelland is mooi, maar heuvels, trappen en drempels maken thuis wonen zwaarder naarmate iemand minder mobiel wordt. Dat nemen wij mee in de afspraken.",
     dichtbij: ["meerssen", "maastricht", "heerlen"],
     eigenZin: "",
-    kaart: { x: 270, y: 336 },
+    kaart: { x: 272, y: 334 },
     diensten: alleDiensten,
   },
   {
@@ -109,7 +109,7 @@ const werkgebied = [
       "Het ziekenhuis is Zuyderland Medisch Centrum in Sittard-Geleen. Na een opname daar regelen wij de zorg thuis zodat de eerste dagen niet op de familie neerkomen.",
     dichtbij: ["beek", "meerssen"],
     eigenZin: "",
-    kaart: { x: 230, y: 262 },
+    kaart: { x: 234, y: 248 },
     diensten: alleDiensten,
   },
   {
@@ -123,7 +123,7 @@ const werkgebied = [
       "Het ziekenhuis is Zuyderland Medisch Centrum in Heerlen. Wij stemmen af met de huisarts en de wijkverpleging die al bij u over de vloer komen.",
     dichtbij: ["valkenburg-aan-de-geul", "meerssen"],
     eigenZin: "",
-    kaart: { x: 292, y: 300 },
+    kaart: { x: 302, y: 292 },
     diensten: alleDiensten,
   },
   {
@@ -137,7 +137,7 @@ const werkgebied = [
       "Voor het ziekenhuis gaat u vanuit Beek naar Zuyderland in Sittard-Geleen of naar het Maastricht UMC+. Thuis herstellen scheelt dus veel heen-en-weer reizen.",
     dichtbij: ["sittard-geleen", "meerssen", "maastricht"],
     eigenZin: "",
-    kaart: { x: 236, y: 290 },
+    kaart: { x: 226, y: 276 },
     diensten: alleDiensten,
   },
 ] as const;

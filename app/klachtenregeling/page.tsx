@@ -1,7 +1,7 @@
+import Accent from "@/components/Accent";
 import type { Metadata } from "next";
 import { site } from "@/site.config";
 import { JuriPagina } from "@/components/Juridisch";
-import { Vink } from "@/components/Iconen";
 
 export const metadata: Metadata = {
   title: `Klachtenregeling | ${site.naam}`,
@@ -28,7 +28,7 @@ export default function Klachtenregeling() {
     <JuriPagina
       naam="Klachtenregeling"
       pad="/klachtenregeling"
-      titel={<>Niet tevreden? <span className="it">Zeg het ons.</span></>}
+      titel={<>Niet tevreden? <Accent>Zeg het ons.</Accent></>}
       lead="Daar worden wij beter van, en u wordt er sneller mee geholpen. Zolang een klacht loopt, verandert er niets aan de zorg die u krijgt."
       zijKop="Klacht indienen"
       zijTekst={<p className="sm">Vermeld uw naam, de datum en wat er is gebeurd.</p>}
@@ -42,15 +42,15 @@ export default function Klachtenregeling() {
           </div>
         </div>
       ))}
-      <div className="card rv" style={{ marginTop: 16, padding: 32, borderRadius: 28, display: "flex", flexDirection: "column", gap: 14 }}>
+      <div className="kaart rv" style={{ marginTop: 16, padding: 32, display: "flex", flexDirection: "column", gap: 14 }}>
         <h2 className="h3">Wat u van ons mag verwachten</h2>
-        {[
-          "Een ontvangstbevestiging binnen vijf werkdagen",
-          "Een inhoudelijke reactie binnen zes weken",
-          "Vastlegging van de klacht en van wat wij ermee doen",
-        ].map((t) => (
-          <div key={t} className="li"><Vink /><span>{t}</span></div>
-        ))}
+        <ul className="checks">
+          {[
+            "Een ontvangstbevestiging binnen vijf werkdagen",
+            "Een inhoudelijke reactie binnen zes weken",
+            "Vastlegging van de klacht en van wat wij ermee doen",
+          ].map((t) => <li key={t}>{t}</li>)}
+        </ul>
       </div>
     </JuriPagina>
   );

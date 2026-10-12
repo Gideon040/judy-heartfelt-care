@@ -49,7 +49,8 @@ export function LimburgKaart() {
           {rest.map((p) => (
             <g key={p.slug}>
               <circle className="stip" cx={p.kaart.x} cy={p.kaart.y} r="4" />
-              <text x={p.kaart.x + 8} y={p.kaart.y + 4}>{p.naam.replace(" aan de Geul", "")}</text>
+              {/* Labels links van de stip als ze rechts botsen (Beek). */}
+              <text x={p.kaart.x + (p.slug === "beek" ? -8 : 8)} y={p.kaart.y + 4} textAnchor={p.slug === "beek" ? "end" : "start"}>{p.naam.replace(" aan de Geul", "")}</text>
             </g>
           ))}
         </g>

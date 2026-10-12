@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/site.config";
 import { CtaBlok, HeroSub, Tags } from "@/components/Blokken";
+import Accent from "@/components/Accent";
+import Golf from "@/components/Golf";
 import { Pijl } from "@/components/Iconen";
-import { LimburgKaart as WerkgebiedKaart } from "@/components/WerkgebiedKaart";
+import { Ill24, IllCultuur, IllPad } from "@/components/Illustraties";
+import { LimburgKaart } from "@/components/WerkgebiedKaart";
 
 export const metadata: Metadata = {
   title: `Werkgebied: thuiszorg in ${site.regio} | ${site.naam}`,
@@ -20,20 +23,20 @@ export default function Werkgebied() {
       <HeroSub
         kruimels={[{ naam: "Werkgebied", pad: "/werkgebied" }]}
         eb="Werkgebied"
-        titel={<>Zorg aan huis in <span className="it">{site.regio}.</span></>}
+        titel={<>Zorg aan huis in <Accent>{`${site.regio}.`}</Accent></>}
         lead="Dit zijn de plaatsen waar wij vast komen. Kies uw plaats om te zien wat wij daar doen."
         foto={{ src: "/afbeeldingen/tijdelijk-voordeur-werkgebied.jpg", alt: "Kennismaking aan de voordeur" }}
       />
 
-      <section className="sec">
-        <div className="wrap" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(440px,100%),1fr))", gap: 64, alignItems: "center" }}>
-          <div className="col rv" style={{ gap: 20 }}>
+      <section className="sec met-golf">
+        <div className="wrap regio">
+          <div className="kopblok rv">
             <div className="eb">Alle plaatsen</div>
-            <h2 className="h2">{AANTAL[n] ?? n} plaatsen, <span className="it">één vast gezicht.</span></h2>
+            <h2 className="h2">{AANTAL[n] ?? n} plaatsen, <Accent>één vast gezicht.</Accent></h2>
             <p className="lead">Binnen ons werkgebied komen wij ook voor een los uur of een enkele nacht.</p>
-            <div className="g2" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(min(240px,100%),1fr))", gap: 14 }}>
+            <div className="raster r2" style={{ gap: 12, marginTop: 8 }}>
               {site.werkgebied.map((p) => (
-                <Link key={p.slug} className="card lift plaatskaart" href={`/zorg/${site.hoofddienst}/${p.slug}`}>
+                <Link key={p.slug} className="plaatskaart" href={`/zorg/${site.hoofddienst}/${p.slug}`}>
                   <span>
                     <b>{p.naam}</b>
                     <span className="sm" style={{ fontSize: 14 }}>
@@ -45,35 +48,40 @@ export default function Werkgebied() {
               ))}
             </div>
           </div>
-          <div className="card rv" style={{ padding: 28, borderRadius: 32, background: "#FFF5EC" }}>
-            <WerkgebiedKaart />
-            <p className="sm" style={{ fontSize: 13.5, marginTop: 10 }}>Schematische weergave, niet op schaal.</p>
+          <div className="col" style={{ gap: 0 }}>
+            <LimburgKaart />
+            <p className="kaart-noot">Schematische weergave, niet op schaal.</p>
           </div>
         </div>
+        <Golf kleur="peach" />
       </section>
 
-      <section className="sec" style={{ paddingTop: 0 }}>
-        <div className="wrap g3">
-          <div className="card col rv" style={{ gap: 12, padding: 36, borderRadius: 28, background: "#FFF5EC", borderColor: "#E3B49A" }}>
-            <span className="abbr">Binnenkort</span>
-            <h3 className="h3" style={{ fontSize: 30 }}>{site.aankondiging.titel}</h3>
-            <p className="sm">Buiten ons vaste werkgebied starten wij binnenkort met culturele dagbesteding in Arnhem.</p>
-            <div className="row"><Link className="btn2" href="/zorgvraag">Interesse melden</Link></div>
+      <section className="sec peach met-golf">
+        <div className="wrap raster r3">
+          <div className="bento-kaart rv" style={{ background: "linear-gradient(140deg,#FDE7D6,#F8D2B7)", borderColor: "#F6CDB0", minHeight: 0 }}>
+            <div className="tegel" style={{ background: "rgba(255,255,255,.65)" }}><IllCultuur /></div>
+            <span className="abbr" style={{ background: "#fff", marginBottom: 10 }}>Binnenkort</span>
+            <h3 className="h3" style={{ marginTop: 0, fontSize: 22 }}>{site.aankondiging.titel}</h3>
+            <p style={{ color: "var(--text)" }}>Buiten ons vaste werkgebied starten wij binnenkort met culturele dagbesteding in Arnhem.</p>
+            <div className="row" style={{ marginTop: 16 }}><Link className="btn2" href="/zorgvraag">Interesse melden</Link></div>
           </div>
-          <div className="card col rv" style={{ gap: 12, padding: 36, borderRadius: 28 }}>
-            <h3 className="h3" style={{ fontSize: 30 }}>Staat uw plaats er niet bij?</h3>
-            <p className="sm">Bel gerust. Bij langere diensten en 24-uurszorg reizen wij verder dan bij een los uur.</p>
-            <div className="row"><a className="btn2" href={`tel:${site.telefoon}`}>{site.telefoonWeergave}</a></div>
+          <div className="bento-kaart rv" style={{ minHeight: 0 }}>
+            <div className="tegel"><Ill24 /></div>
+            <h3 className="h3" style={{ marginTop: 0, fontSize: 22 }}>Staat uw plaats er niet bij?</h3>
+            <p>Bel gerust. Bij langere diensten en 24-uurszorg reizen wij verder dan bij een los uur.</p>
+            <div className="row" style={{ marginTop: 16 }}><a className="btn2" href={`tel:${site.telefoon}`}>{site.telefoonWeergave}</a></div>
           </div>
-          <div className="card col rv" style={{ gap: 12, padding: 36, borderRadius: 28 }}>
-            <h3 className="h3" style={{ fontSize: 30 }}>Zorg mee op vakantie</h3>
-            <p className="sm">Gaat u naar {site.vakantielanden.join(", ").replace(/, ([^,]*)$/, " of $1")}? {site.gezicht.voornaam} spreekt de taal en reist in overleg mee.</p>
-            <Tags items={site.vakantielanden} />
+          <div className="bento-kaart donker rv" style={{ minHeight: 0 }}>
+            <div className="tegel"><IllPad /></div>
+            <h3 className="h3" style={{ marginTop: 0, fontSize: 22 }}>Zorg mee op vakantie</h3>
+            <p>Gaat u naar {site.vakantielanden.join(", ").replace(/, ([^,]*)$/, " of $1")}? {site.gezicht.voornaam} spreekt de taal en reist in overleg mee.</p>
+            <div style={{ marginTop: 16 }}><Tags items={site.vakantielanden} /></div>
           </div>
         </div>
+        <Golf kleur="cream" />
       </section>
 
-      <CtaBlok label="Zorg nodig in uw plaats?" titel={<>Wij kijken of het <span className="it">te regelen is.</span></>} />
+      <CtaBlok label="Zorg nodig in uw plaats?" titel={<>Wij kijken of het <Accent>te regelen is.</Accent></>} foto="voordeurWerkgebied" ill="huis" />
     </main>
   );
 }
