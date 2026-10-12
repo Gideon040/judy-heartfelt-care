@@ -139,14 +139,18 @@ h1,h2,h3,h4,p{margin:0}
 .mega-binnenkort:hover{color:var(--acc-d)}
 .mega-plaatsen a{display:block;padding:8px 10px;border-radius:14px;text-decoration:none;transition:background .2s}
 .mega .tekstlink{display:inline-block;margin:10px 0 0 10px;font-size:14px}
-.mega-cta{background:var(--peach);border-radius:22px;padding:26px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px}
-.mega-cta .tegel{width:78px;height:62px;background:#fff;border-radius:18px;margin-bottom:4px}
-.mega-cta .tegel svg{width:64px;height:auto}
-.mega-cta b{font-size:19px;font-weight:800;letter-spacing:-.01em}
-.mega-cta p{margin:0 0 4px;font-size:14.5px;line-height:1.5;color:var(--text)}
-.mega-cta .btn{width:100%;color:#fff}
-.mega-cta a:not(.btn){color:var(--acc-tekst);font-weight:700;font-size:14.5px;text-decoration:none}
-.mega-cta a:not(.btn):hover{text-decoration:underline}
+.mega-judy{border-radius:22px;padding:24px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;position:relative;overflow:hidden;background:radial-gradient(260px 200px at 85% 0%,rgba(226,118,63,.45),transparent 70%),var(--night)}
+.mega-portret{position:relative;width:96px;height:116px;border-radius:999px 999px 18px 18px;overflow:hidden;margin-bottom:12px;background:var(--night-2);box-shadow:0 0 0 3px var(--night),0 0 0 5px var(--acc-l)}
+.mega-judy b{color:#fff;font-size:17px}
+.mega-judy small{color:#BDB0C2}
+.mega-judy p{margin:10px 0 6px;font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.35;color:#F2E6EE}
+.mega-tel{display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:800;font-size:20px;letter-spacing:-.01em;text-decoration:none;margin-bottom:2px}
+.mega-tel:hover{color:var(--acc-l)}
+.mega-tel svg{color:var(--acc-l)}
+.mega-balk{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:8px 26px;margin:-6px -28px -28px;padding:16px 28px;border-top:1px solid var(--line);background:var(--cream);border-radius:0 0 28px 28px;font-size:14px;font-weight:600;color:var(--text)}
+.mega-balk>span{display:inline-flex;gap:8px;align-items:center}
+.mega-balk>span::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--acc-l);transform:rotate(45deg)}
+.mega-balk .tekstlink{margin:0 0 0 auto;font-size:14.5px}
 .kop-acties{display:flex;gap:8px;align-items:center}
 .kop-acties .btn,.kop-acties .btn2{white-space:nowrap}
 @media (max-width:1240px){.kop-acties>.btn2{display:none}}

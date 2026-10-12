@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
@@ -71,12 +72,22 @@ function ZorgPaneel() {
         </ul>
         <Link href="/werkgebied" className="tekstlink">Alle plaatsen bekijken</Link>
       </div>
-      <div className="mega-cta">
-        <span className="tegel"><Ill naam="bel" /></span>
-        <b>Weet u niet wat past?</b>
-        <p>Vertel kort wat er nodig is. U hoort dezelfde werkdag van ons.</p>
-        <Link className="btn" href="/zorgvraag">Zorgvraag stellen <Pijl /></Link>
-        <a href={`tel:${site.telefoon}`}>of bel {site.telefoonWeergave}</a>
+      <div className="mega-judy dk">
+        {site.gezicht.foto && (
+          <span className="mega-portret">
+            <Image src={site.gezicht.foto} alt="" fill sizes="96px" style={{ objectFit: "cover", objectPosition: "50% 18%" }} />
+          </span>
+        )}
+        <b>{site.gezicht.naam}</b>
+        <small>{site.gezicht.functie}</small>
+        <p>U krijgt {site.gezicht.voornaam} zelf aan de lijn.</p>
+        <a className="mega-tel" href={`tel:${site.telefoon}`}><Telefoon />{site.telefoonWeergave}</a>
+        <small>{site.bereikbaarheid}</small>
+      </div>
+      <div className="mega-balk">
+        <span>Kennismaking bij u thuis, meestal binnen 48 uur</span>
+        <span>Geen wachtlijst</span>
+        <Link href="/zorgvraag" className="tekstlink">Zorgvraag stellen <Pijl /></Link>
       </div>
     </div>
   );
