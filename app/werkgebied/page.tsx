@@ -62,7 +62,7 @@ export default function Werkgebied() {
             <div className="tegel" style={{ background: "rgba(255,255,255,.65)" }}><IllCultuur /></div>
             <span className="abbr" style={{ background: "#fff", marginBottom: 10 }}>Binnenkort</span>
             <h3 className="h3" style={{ marginTop: 0, fontSize: 22 }}>{site.aankondiging.titel}</h3>
-            <p style={{ color: "var(--text)" }}>Buiten ons vaste werkgebied starten wij binnenkort met culturele dagbesteding in Arnhem.</p>
+            <p style={{ color: "var(--text)" }}>In Arnhem starten wij binnenkort ook met culturele dagbesteding, naast de zorg aan huis.</p>
             <div className="row" style={{ marginTop: 16 }}><Link className="btn2" href="/zorgvraag">Interesse melden</Link></div>
           </div>
           <div className="bento-kaart rv" style={{ minHeight: 0 }}>

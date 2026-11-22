@@ -429,10 +429,12 @@ h1,h2,h3,h4,p{margin:0}
 .kaart-noot{font-size:13px;color:var(--muted);margin-top:10px;text-align:center}
 /* Schakelaar zonder JavaScript: radio + :has() */
 .regio-blok:has(.regio-keuze) .regio-paneel{display:none}
-.regio-blok:has(#regio-0:checked) [data-paneel="0"],.regio-blok:has(#regio-1:checked) [data-paneel="1"]{display:block;animation:fade .5s both}
-.regio-blok:has(#regio-0:checked) label[for="regio-0"],.regio-blok:has(#regio-1:checked) label[for="regio-1"]{background:var(--night);color:#fff}
-.regio-blok:has(#regio-0:checked) .gebied[data-gebied="1"],.regio-blok:has(#regio-1:checked) .gebied[data-gebied="0"]{opacity:.28}
-.regio-blok:has(#regio-0:focus-visible) label[for="regio-0"],.regio-blok:has(#regio-1:focus-visible) label[for="regio-1"]{outline:3px solid var(--acc);outline-offset:2px}
+.regio-blok:has(#regio-0:checked) [data-paneel="0"],.regio-blok:has(#regio-1:checked) [data-paneel="1"],.regio-blok:has(#regio-2:checked) [data-paneel="2"]{display:block;animation:fade .5s both}
+.regio-blok:has(#regio-0:checked) label[for="regio-0"],.regio-blok:has(#regio-1:checked) label[for="regio-1"],.regio-blok:has(#regio-2:checked) label[for="regio-2"]{background:var(--night);color:#fff}
+/* Kaart: niet-gekozen regio's gedimd */
+.regio-blok:has(.regio-keuze:checked) .gebied{opacity:.28}
+.regio-blok:has(#regio-0:checked) .gebied[data-gebied="0"],.regio-blok:has(#regio-1:checked) .gebied[data-gebied="1"],.regio-blok:has(#regio-2:checked) .gebied[data-gebied="2"]{opacity:1}
+.regio-blok:has(#regio-0:focus-visible) label[for="regio-0"],.regio-blok:has(#regio-1:focus-visible) label[for="regio-1"],.regio-blok:has(#regio-2:focus-visible) label[for="regio-2"]{outline:3px solid var(--acc);outline-offset:2px}
 
 /* FAQ */
 .faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}

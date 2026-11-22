@@ -23,13 +23,13 @@ const fraunces = Fraunces({
 });
 
 const BESCHRIJVING =
-  "Particuliere thuiszorg in Zuid-Limburg: persoonlijke verzorging, begeleiding, nachtzorg, dagbesteding, huishoudelijke hulp en palliatieve zorg bij u thuis. Een vast gezicht, zeven dagen per week, zonder wachtlijst.";
+  "Particuliere thuiszorg in Weert, Maastricht en Arnhem: persoonlijke verzorging, begeleiding, nachtzorg, dagbesteding, huishoudelijke hulp en palliatieve zorg bij u thuis. Een vast gezicht, zeven dagen per week, zonder wachtlijst.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   // Geen title.template: de pagina's uit het startpakket zetten de merknaam
   // zelf al in de titel, dat zou dubbel gaan.
-  title: `${site.naam} | Thuiszorg met een vast gezicht in Maastricht en omstreken`,
+  title: `${site.naam} | Thuiszorg met een vast gezicht in Weert en omstreken`,
   description: BESCHRIJVING,
   openGraph: { siteName: site.naam, locale: "nl_NL", type: "website" },
 };

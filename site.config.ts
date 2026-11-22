@@ -46,19 +46,53 @@ const diensten = [
   },
 ] as const;
 
-// Werkgebied. LET OP: in de intake staat alleen "Limburg"; deze zes plaatsen
-// komen uit het ontwerp en moeten door Judy bevestigd worden.
+// Werkgebied in drie regio's (besluit Gideon/Judy 22-11-2026): de basis is
+// Weert en omgeving, daarnaast Maastricht en omgeving en Arnhem.
+// - "regio": groepering voor de regioschakelaar, de kaart en "in de buurt".
 // - "diensten": alleen combinaties die Judy echt aanbiedt krijgen een
 //   dienst×plaatspagina (regel 6.1 structuurspec).
 // - "eigenZin": de ene zin van Judy over zorg in deze plaats (intake). Zolang
 //   die leeg is, slaat de pagina dat blok over.
 // - "context": alleen na te lopen feiten (ziekenhuis, gemeente, ligging).
-// - "kaart": positie op de kaart van Limburg (viewBox 400×400, redesign).
+// - "kaart": positie op de schematische kaart (viewBox 400×400); "links" =
+//   label links van de stip. Arnhem ligt buiten Limburg en staat er als
+//   losse pin boven.
 const alleDiensten = diensten.map((d) => d.slug);
 const werkgebied = [
   {
+    naam: "Weert",
+    slug: "weert",
+    regio: "weert",
+    gemeente: "Weert",
+    kernen: ["Stramproy", "Altweerterheide", "Tungelroy", "Swartbroek", "Laar"],
+    ligging:
+      "Weert ligt in Midden-Limburg, tegen de grens met Brabant en België. Bij de gemeente horen ook Stramproy, Altweerterheide, Tungelroy en Swartbroek.",
+    context:
+      "Het ziekenhuis van de stad is SJG Weert. Wie daar na een opname naar huis mag, heeft vaak meteen hulp nodig. Weert is onze thuisbasis, dus wij zijn snel ter plaatse.",
+    dichtbij: ["nederweert"],
+    eigenZin: "",
+    kaart: { x: 150, y: 128, links: false },
+    diensten: alleDiensten,
+  },
+  {
+    naam: "Nederweert",
+    slug: "nederweert",
+    regio: "weert",
+    gemeente: "Nederweert",
+    kernen: ["Ospel", "Budschop", "Leveroy", "Ospeldijk", "Nederweert-Eind"],
+    ligging:
+      "Nederweert ligt net ten oosten van Weert, waar de Zuid-Willemsvaart en de Noordervaart samenkomen. Bij de gemeente horen ook Ospel, Budschop, Leveroy en Ospeldijk.",
+    context:
+      "Voor het ziekenhuis gaat u vanuit Nederweert naar SJG Weert, een paar kilometer verderop. Omdat wij vanuit Weert werken, is Nederweert voor ons om de hoek.",
+    dichtbij: ["weert"],
+    eigenZin: "",
+    kaart: { x: 192, y: 100, links: false },
+    diensten: alleDiensten,
+  },
+  {
     naam: "Maastricht",
     slug: "maastricht",
+    regio: "maastricht",
     gemeente: "Maastricht",
     kernen: ["Wyck", "Heer", "Amby", "Scharn", "Gronsveld", "Cadier en Keer"],
     ligging:
@@ -67,12 +101,13 @@ const werkgebied = [
       "Wie in het Maastricht UMC+ is opgenomen, komt vaak sneller thuis dan de omgeving had verwacht. Dan moet de zorg thuis meteen staan.",
     dichtbij: ["meerssen", "valkenburg-aan-de-geul", "beek"],
     eigenZin: "",
-    kaart: { x: 214, y: 336 },
+    kaart: { x: 214, y: 336, links: true },
     diensten: alleDiensten,
   },
   {
     naam: "Meerssen",
     slug: "meerssen",
+    regio: "maastricht",
     gemeente: "Meerssen",
     kernen: ["Bunde", "Ulestraten", "Geulle", "Rothem"],
     ligging:
@@ -81,12 +116,13 @@ const werkgebied = [
       "Het dichtstbijzijnde ziekenhuis is het Maastricht UMC+. In de kleinere kernen woont men vaak al een leven lang in hetzelfde huis, en daar wil men ook blijven.",
     dichtbij: ["maastricht", "valkenburg-aan-de-geul", "beek"],
     eigenZin: "",
-    kaart: { x: 246, y: 306 },
+    kaart: { x: 246, y: 306, links: false },
     diensten: alleDiensten,
   },
   {
     naam: "Valkenburg aan de Geul",
     slug: "valkenburg-aan-de-geul",
+    regio: "maastricht",
     gemeente: "Valkenburg aan de Geul",
     kernen: ["Valkenburg", "Berg en Terblijt", "Schin op Geul", "Houthem", "Sibbe", "Vilt"],
     ligging:
@@ -95,12 +131,13 @@ const werkgebied = [
       "Het Heuvelland is mooi, maar heuvels, trappen en drempels maken thuis wonen zwaarder naarmate iemand minder mobiel wordt. Dat nemen wij mee in de afspraken.",
     dichtbij: ["meerssen", "maastricht", "heerlen"],
     eigenZin: "",
-    kaart: { x: 272, y: 334 },
+    kaart: { x: 272, y: 334, links: false },
     diensten: alleDiensten,
   },
   {
     naam: "Sittard-Geleen",
     slug: "sittard-geleen",
+    regio: "maastricht",
     gemeente: "Sittard-Geleen",
     kernen: ["Sittard", "Geleen", "Born", "Limbricht", "Munstergeleen", "Einighausen"],
     ligging:
@@ -109,12 +146,13 @@ const werkgebied = [
       "Het ziekenhuis is Zuyderland Medisch Centrum in Sittard-Geleen. Na een opname daar regelen wij de zorg thuis zodat de eerste dagen niet op de familie neerkomen.",
     dichtbij: ["beek", "meerssen"],
     eigenZin: "",
-    kaart: { x: 234, y: 248 },
+    kaart: { x: 234, y: 248, links: false },
     diensten: alleDiensten,
   },
   {
     naam: "Heerlen",
     slug: "heerlen",
+    regio: "maastricht",
     gemeente: "Heerlen",
     kernen: ["Hoensbroek", "Heerlerheide", "Heerlerbaan", "Welten"],
     ligging:
@@ -123,12 +161,13 @@ const werkgebied = [
       "Het ziekenhuis is Zuyderland Medisch Centrum in Heerlen. Wij stemmen af met de huisarts en de wijkverpleging die al bij u over de vloer komen.",
     dichtbij: ["valkenburg-aan-de-geul", "meerssen"],
     eigenZin: "",
-    kaart: { x: 302, y: 292 },
+    kaart: { x: 302, y: 292, links: false },
     diensten: alleDiensten,
   },
   {
     naam: "Beek",
     slug: "beek",
+    regio: "maastricht",
     gemeente: "Beek",
     kernen: ["Spaubeek", "Neerbeek", "Genhout", "Geverik"],
     ligging:
@@ -137,7 +176,22 @@ const werkgebied = [
       "Voor het ziekenhuis gaat u vanuit Beek naar Zuyderland in Sittard-Geleen of naar het Maastricht UMC+. Thuis herstellen scheelt dus veel heen-en-weer reizen.",
     dichtbij: ["sittard-geleen", "meerssen", "maastricht"],
     eigenZin: "",
-    kaart: { x: 226, y: 276 },
+    kaart: { x: 226, y: 276, links: true },
+    diensten: alleDiensten,
+  },
+  {
+    naam: "Arnhem",
+    slug: "arnhem",
+    regio: "arnhem",
+    gemeente: "Arnhem",
+    kernen: ["Arnhem-Zuid", "Elden", "Schaarsbergen", "Presikhaaf", "Malburgen", "Rijkerswoerd"],
+    ligging:
+      "Arnhem is de hoofdstad van Gelderland en ligt aan de Rijn, tegen de Veluwe aan. Bij de gemeente horen ook Elden en Schaarsbergen.",
+    context:
+      "Het ziekenhuis van de stad is Rijnstate. In Arnhem starten wij binnenkort ook met culturele dagbesteding, zodat zorg aan huis en dagbesteding op elkaar aansluiten.",
+    dichtbij: [] as string[],
+    eigenZin: "",
+    kaart: { x: 330, y: 50, links: false },
     diensten: alleDiensten,
   },
 ] as const;
@@ -157,7 +211,7 @@ const vastePaginas = [
 export const site = {
   slug: "judy-heartfelt-care",
   naam: "Judy Heartfelt Care",
-  plaats: "Maastricht",
+  plaats: "Weert",
   segment: "thuiszorg",
   telefoon: "+31686353313",
   email: "judyheartfeltcare@gmail.com",
@@ -185,7 +239,7 @@ export const site = {
   telefoonWeergave: "06 86 35 33 13",
   bereikbaarheid: "ma t/m vr 10:00 - 17:00",
   bereikbaarKort: "tussen 10:00 en 17:00",
-  regio: "Zuid-Limburg",
+  regio: "Weert, Maastricht en Arnhem",
   ondertitel: "Particuliere thuiszorg",
   directPlek: true,
   kvk: "96481706",
@@ -231,14 +285,15 @@ export const site = {
   reviews: [] as readonly { tekst: string; voornaam: string; plaats: string; datum: string }[],
   diensten,
   werkgebied,
-  // Regio's voor de schakelaar op home (redesign). Alleen bevestigde regio's
-  // worden in productie getoond. Regio Weert staat in het prototype, maar de
-  // plaatsen zijn nog niet bevestigd: bevestigd op true zetten en de plaatsen
-  // aan "werkgebied" toevoegen zodra Judy ze bevestigt.
-  regios: [
-    { naam: "Regio Maastricht", titel: "Maastricht en omgeving", plaatsen: werkgebied.map((p) => p.slug) as string[], bevestigd: true },
-    { naam: "Regio Weert", titel: "Weert en omgeving", plaatsen: [] as string[], bevestigd: false, voorstel: ["Weert", "Nederweert", "Stramproy", "Budel", "Leudal"] },
-  ],
+  // Regio's voor de schakelaar (home, werkgebied) en de kaart. Volgorde =
+  // volgorde van de tabbladen; de eerste plaats van een regio is het midden
+  // op de kaart.
+  regios: (["weert", "maastricht", "arnhem"] as const).map((sleutel) => ({
+    sleutel,
+    naam: { weert: "Regio Weert", maastricht: "Regio Maastricht", arnhem: "Arnhem" }[sleutel],
+    titel: { weert: "Weert en omgeving", maastricht: "Maastricht en omgeving", arnhem: "Arnhem" }[sleutel],
+    plaatsen: werkgebied.filter((p) => p.regio === sleutel).map((p) => p.slug) as string[],
+  })),
 } as const;
 
 export type Dienst = (typeof diensten)[number];

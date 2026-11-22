@@ -71,7 +71,8 @@ export default async function DienstPlaatsPagina({ params }: Props) {
     ...plaats.dichtbij.map((s) => site.werkgebied.find((w) => w.slug === s)),
     ...site.werkgebied,
   ]
-    .filter((w): w is Plaats => !!w && w.slug !== plaats.slug && biedtAan(w, dienst.slug))
+    // Alleen plaatsen uit dezelfde regio: Arnhem is geen buur van Weert.
+    .filter((w): w is Plaats => !!w && w.slug !== plaats.slug && w.regio === plaats.regio && biedtAan(w, dienst.slug))
     .filter((w, i, arr) => arr.findIndex((x) => x.slug === w.slug) === i)
     .slice(0, 4);
 
