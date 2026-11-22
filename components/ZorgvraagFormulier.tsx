@@ -9,6 +9,10 @@ const ZORGVRAGEN = [
   ["persoonlijke_verzorging", "Persoonlijke verzorging"],
   ["verpleging", "Verpleging"],
   ["waakzorg", "Waakzorg"],
+  ["nachtzorg", "Nachtzorg"],
+  ["palliatieve_zorg", "Palliatieve zorg"],
+  ["respijtzorg", "Respijtzorg"],
+  ["dagbesteding", "Dagbesteding"],
   ["gezelschap", "Gezelschap"],
   ["overig", "Anders / weet ik niet"],
 ] as const;
@@ -22,24 +26,28 @@ export default function ZorgvraagFormulier() {
     e.preventDefault();
     setBezig(true); setFout(null);
     const f = new FormData(e.currentTarget);
-    const res = await fetch(site.apiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        organisatie_slug: site.slug,
-        naam_aanvrager: f.get("naam"),
-        telefoon: f.get("telefoon"),
-        email: f.get("email"),
-        plaats: f.get("plaats"),
-        zorgvraag: f.get("zorgvraag"),
-        reden: f.get("reden"),
-        ...herkomst(),
-      }),
-    });
-    if (res.ok) {
-      sessionStorage.setItem("zb_lead_klaar", "1");
-      window.location.href = "/bedankt";
-      return;
+    try {
+      const res = await fetch(site.apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          organisatie_slug: site.slug,
+          naam_aanvrager: f.get("naam"),
+          telefoon: f.get("telefoon"),
+          email: f.get("email"),
+          plaats: f.get("plaats"),
+          zorgvraag: f.get("zorgvraag"),
+          reden: f.get("reden"),
+          ...herkomst(),
+        }),
+      });
+      if (res.ok) {
+        sessionStorage.setItem("zb_lead_klaar", "1");
+        window.location.href = "/bedankt";
+        return;
+      }
+    } catch {
+      /* netwerkfout: valt door naar de foutmelding */
     }
     setBezig(false);
     setFout("Versturen is niet gelukt. Bel ons gerust direct: " + site.telefoon);

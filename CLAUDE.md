@@ -1,10 +1,8 @@
-ALLE BESTAANDE SEO-TEKSTEN BLIJVEN LETTERLIJK BEHOUDEN. Design en code mogen veranderen, tekst, koppen, FAQ's, links, meta en schema niet (behalve em dashes vervangen).
-
 # Zorgbaar startpakket — afspraken voor klantsites
 
 ## Wat dit is
 Gedeelde onderdelen die in ELKE klantsite identiek moeten werken:
-formulier, utm-capture, bedankpagina, GA4-events, schema.org.
+formulier, utm-capture, bedankpagina, GA4 + cookiebanner, schema.org.
 Branding is overal Zorgbaar ("Website door Zorgbaar" in de footer).
 
 ## De structuurspec
@@ -50,7 +48,11 @@ benoemen in toelichting.
 
 GET /api/kennisbank?organisatie=<slug> → gepubliceerde artikelen
 (titel, slug, samenvatting, gepubliceerd_op); met &artikel=<slug>
-één artikel inclusief inhoud (markdown-achtig: ## koppen, alinea's).
+één artikel inclusief inhoud als opgeschoonde HTML uit de blog-editor
+van het portaal (h2-h4, p, strong/em/u/s, ul/ol/li, blockquote, a, hr;
+geen h1, die is de artikeltitel). app/kennisbank/[slug] toont die via
+dangerouslySetInnerHTML in .zb-artikel-inhoud; stijl h2-h4, lijsten,
+citaat en links in de eigen CSS van de site.
 De /kennisbank-pagina's van de site lezen hieruit; blok verbergen als
 er nog geen artikelen zijn (zie structuurspec).
 
@@ -64,8 +66,11 @@ er nog geen artikelen zijn (zie structuurspec).
   breadcrumbSchema op alles onder de home. Artikel + breadcrumb op
   kennisbankartikelen zit al in het startpakket.
 - GA4: per site een datastream in property "Zorgbaar Netwerk";
-  Measurement ID in site.config.ts, gtag-snippet in de <head>
-  (voorbeeld onderin lib/analytics.ts).
+  Measurement ID in site.config.ts. GA4 laden ALLEEN via
+  <Meetcode /> (components/Meetcode.tsx) in de layout: Consent Mode v2,
+  standaard alles denied, cookiebanner met Accepteren/Weigeren. Geen
+  eigen gtag-snippet. In de footer <CookieKnop /> (ook uit
+  Meetcode.tsx); banner stylen via zb-cookies, knop via zb-cookie-knop.
 - GSC-koppeling bij oplevering van elke site.
 
 ## Checklist nieuwe klantsite
@@ -83,5 +88,3 @@ er nog geen artikelen zijn (zie structuurspec).
    in GA4 realtime.
 7. Deploy, domein koppelen, GSC verifiëren; domein + webmail-URL
    invullen bij de organisatie in het portaal.
-
-@AGENTS.md

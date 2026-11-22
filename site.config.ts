@@ -219,7 +219,7 @@ export const site = {
   // robots, canonicals en schema.org.
   // TODO: definitief domein van Judy invullen.
   url: "https://www.judyheartfeltcare.nl",
-  ga4Id: "G-XXXXXXX",
+  ga4Id: "G-SC0BVRD32H",
   // Extra paden van deze site (bijv. "/diensten/huishoudelijke-hulp-hengelo")
   // zodat ze in de sitemap komen zonder de basisbestanden aan te passen.
   extraPaginas: [

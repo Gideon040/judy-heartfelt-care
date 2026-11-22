@@ -13,8 +13,5 @@ export function event(naam: string, params: Record<string, string> = {}) {
   window.gtag?.("event", naam, { organisatie_slug: site.slug, ...params });
 }
 
-// In de <head> van de site opnemen:
-// <script async src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4Id}`} />
-// <script dangerouslySetInnerHTML={{ __html:
-//   `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
-//    gtag('js',new Date());gtag('config','${site.ga4Id}');` }} />
+// GA4-snippet + cookiebanner (Consent Mode v2): components/Meetcode.tsx,
+// in de layout opnemen als <Meetcode />. Geen eigen gtag-snippet in de site.

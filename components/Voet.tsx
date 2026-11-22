@@ -2,6 +2,7 @@ import Link from "next/link";
 import { site } from "@/site.config";
 import { Logo } from "./Kop";
 import { Telefoon } from "./Iconen";
+import { CookieKnop } from "./Meetcode";
 
 export default function Voet() {
   const reviewsLive = site.reviews.length >= 3;
@@ -36,6 +37,7 @@ export default function Voet() {
               <Link href="/klachtenregeling">Klachtenregeling</Link>
               <Link href="/privacy">Privacy</Link>
               <Link href="/algemene-voorwaarden">Algemene voorwaarden</Link>
+              <CookieKnop />
             </div>
           </div>
           <div className="voet-onder">
