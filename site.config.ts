@@ -214,7 +214,7 @@ export const site = {
   plaats: "Weert",
   segment: "thuiszorg",
   telefoon: "+31686353313",
-  email: "judyheartfeltcare@gmail.com",
+  email: "info@judyheartfeltcare.nl",
   // Productie-URL zonder slash aan het einde. Gebruikt voor sitemap,
   // robots, canonicals en schema.org.
   // TODO: definitief domein van Judy invullen.
