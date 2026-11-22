@@ -14,7 +14,8 @@ export function localBusiness(beschrijving: string) {
     description: beschrijving,
     url: site.url,
     telephone: site.telefoon,
-    email: site.email,
+    // Leeg = klant wil geen e-mailadres publiek (ook niet in schema).
+    ...(site.email ? { email: site.email } : {}),
     address: { "@type": "PostalAddress", addressLocality: site.plaats, addressCountry: "NL" },
     areaServed: site.plaats,
   };

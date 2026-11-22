@@ -33,7 +33,7 @@ export default function Privacy() {
         Alleen met uw toestemming, of wanneer het nodig is voor de zorg, zoals met de huisarts of de wijkverpleging. Een zorgvraag via deze website komt binnen via het systeem van Zorgbaar, dat de aanvraag voor ons verwerkt. Wij verkopen uw gegevens nooit.
       </JuriBlok>
       <JuriBlok kop="Websitebezoek">
-        Wij meten met Google Analytics hoe de website wordt gebruikt, bijvoorbeeld via welke pagina u binnenkwam en of een zorgvraag is verstuurd. Dat gebruiken wij alleen om de website te verbeteren. Google Analytics plaatst alleen cookies als u daar in de cookiemelding toestemming voor geeft; zonder toestemming worden alleen anonieme, cookieloze meetgegevens verstuurd. Uw keuze wijzigt u via "Cookie-instellingen" onderaan elke pagina.
+        Wij meten met Google Analytics hoe de website wordt gebruikt, bijvoorbeeld via welke pagina u binnenkwam en of een zorgvraag is verstuurd. Dat gebruiken wij alleen om de website te verbeteren. Google Analytics plaatst alleen cookies als u daar in de cookiemelding toestemming voor geeft; zonder toestemming worden alleen anonieme, cookieloze meetgegevens verstuurd. Uw keuze wijzigt u via &ldquo;Cookie-instellingen&rdquo; onderaan elke pagina.
       </JuriBlok>
       <JuriBlok kop="Uw rechten">
         U mag uw gegevens inzien, laten corrigeren of laten verwijderen. Wij reageren binnen vier weken. U kunt ook een klacht indienen bij de Autoriteit Persoonsgegevens.
